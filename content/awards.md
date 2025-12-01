@@ -1,4 +1,4 @@
-## Awards, Honours and Distinctions
+## Recognition, Honours and Distinctions
 
 ### Institutional Awards
 

@@ -4,7 +4,7 @@ const sections = [
   { id: "projects", label: "Projects", file: "content/projects.md" },
   { id: "publications", label: "Publications", file: "content/publications.md" },
   { id: "teaching", label: "Teaching", file: "content/teaching.md" },
-  { id: "awards", label: "Awards", file: "content/awards.md" }
+  { id: "awards", label: "Recognition", file: "content/awards.md" }
 ];
 
 // Inline fallback content so the site still works when opened directly via file://
