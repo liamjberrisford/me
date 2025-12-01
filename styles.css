@@ -153,16 +153,24 @@ body {
   border-radius: 0;
   border: none;
   box-shadow: none;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .sub-nav-links button {
-  font-size: 2rem;
-  padding: 0.9rem 1.6rem;
+  font-size: clamp(1rem, 1.6vw, 2rem);
+  padding: clamp(0.6rem, 1.2vw, 0.9rem) clamp(0.9rem, 1.4vw, 1.6rem);
   font-weight: 700;
   border-radius: 18px;
   background: #ffffff;
   border: 1px solid rgba(15, 23, 42, 0.08);
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+  flex: 1 1 0;
+  min-width: 0;
+  white-space: nowrap;
 }
 
 .sub-nav[hidden] {
