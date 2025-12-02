@@ -18,7 +18,7 @@
 
 ### Society Awards
 
-**National UK SocRSE Community Training and Education Award — Shortlisted (1 of 3), Society of Research Software Engineering / RSECon25 (August 2025)**  
+**National UK SocRSE Community Training and Education Award — Shortlisted (1 of 3), Society of Research Software Engineering / RSECon25**  
   Recognised for crafting and delivering the “Coding for Reproducible Research” programme (live and self-paced with quizzes, including a website/pipeline overhaul), developing a 15-hour “train the trainer” pedagogy course (sample delivered to the RSE team), and leading a well-received GPU programming team day.
 
 ### Fellowships and Professional Recognition
