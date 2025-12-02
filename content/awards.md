@@ -16,6 +16,11 @@
 **Exemplary Dissertation Award, University of Bath**  
   Dissertation *“Initial Underwater Structure Exploration Planning”* (mark: 88%) selected as exemplary, cited as innovative work with commercial and academic impact and as a model for future Computer Science dissertations.
 
+### Society Awards
+
+**National UK SocRSE Community Training and Education Award — Shortlisted (1 of 3), Society of Research Software Engineering / RSECon25 (August 2025)**  
+  Recognised for crafting and delivering the “Coding for Reproducible Research” programme (live and self-paced with quizzes, including a website/pipeline overhaul), developing a 15-hour “train the trainer” pedagogy course (sample delivered to the RSE team), and leading a well-received GPU programming team day.
+
 ### Fellowships and Professional Recognition
 
 **Fellow of Advance HE (FHEA)**  
