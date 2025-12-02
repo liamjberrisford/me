@@ -32,11 +32,6 @@ The course also emphasises good software development practice, including impleme
 
 The Introduction to Julia course is aimed at learners already familiar with basic programming and focuses on Julia’s distinctive language features and design philosophy. It develops fluency with the Julia REPL (including package and help modes), core language constructs (data types, variables, and control flow), and function design using multiple dispatch. The course covers working with arrays and matrices for numerical computing, performing I/O with common data formats, creating visualisations using Plots.jl, and managing dependencies and reproducible projects with Julia’s Pkg system. It also introduces performance profiling and optimisation, culminating in a capstone project implementing and extending Conway’s Game of Life in Julia.
 
-### Concepts for Efficient Programming (Feb 2023)
-
-- Workshop on computer architecture, algorithm analysis, and practical optimisation (parallelism, search-space reduction).  
-- Materials and examples available: berrli/ConceptsForEfficientProgramming.
-
 ## Supervision 
 
 ![Wildfire Cellular Automata](content/images/wildfire_ca.gif)
