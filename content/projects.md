@@ -4,7 +4,7 @@
 
 ### Met Office NG-ARCH: LFRic Spectral Gravity Wave Drag Optimisation 
 
-![LFRic optimisation](content/images/ngarch.gif)
+![LFRic optimisation](content/images/ngarch.webp)
 
 As part of the NG-ARCH initiative, I led a comprehensive optimisation of the Spectral Gravity Wave Drag (SGWD) component within the Met Office’s LFRic atmospheric model, using the PSyclone code generation framework. This work focused on applying advanced performance transformations to a Fortran implementation of Spectral Gravity Wave Drag and systematically evaluating both CPU-based (OpenMP) and GPU-based (OpenMP offloading, OpenACC) implementations.
 
@@ -51,4 +51,3 @@ Environmental Insights Interactive is a web application that showcases the capab
 ![Example Dashboard used for the Pulse Check Survey](content/images/police_pulse_check.png)
 
 I worked as a Research Software Engineer, a UKRI-funded behavioural change initiative led by the College of Policing, supporting three police forces in England and Wales. The project aimed to help supervisors address sexism and racism within policing culture by running short, monthly “pulse” surveys capturing officers’ and staff’s lived experiences of workplace culture. I led the design and implementation of a suite of Power BI dashboards for supervisors, participating officers and staff, and line managers overseeing monthly action plans, translating thousands of survey responses from over 1,800 personnel into clear, accessible insights. This involved complex DAX development, visual design, and rapid troubleshooting under tight timelines, all while maintaining role-based anonymity within highly non-uniform team structures. I iteratively refined the tools using feedback from pilot studies, cognitive testing, and stakeholder quality assurance to ensure the dashboards were both trusted and practically useful. This work enabled leadership teams to monitor behavioural change interventions, respond quickly to emerging cultural issues, and make data-informed decisions with confidence.
-

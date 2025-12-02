@@ -4,7 +4,7 @@
 
 ### Machine Learning for Hourly Air Pollution Prediction - Global (ML-HAPPG)
 
-![ML-HAPPG Visulisation](content/images/ml_happg.gif)
+![ML-HAPPG Visulisation](content/images/ml_happg.webp)
 
 [Publication](https://catalogue.ceda.ac.uk/uuid/7f91b1326a324caa9e436b8fdef4a0d8/)
 
@@ -20,7 +20,7 @@ Each air pollutant's concentrations are predicted not only as average (mean) val
 
 ### Machine Learning for Hourly Air Pollution Prediction in England (ML-HAPPE)
 
-![ML-HAPPE Visulisation](content/images/ml_happe.gif)
+![ML-HAPPE Visulisation](content/images/ml_happe.webp)
 
 [Publication](https://catalogue.ceda.ac.uk/uuid/fc735f9878ed43e293b85f85e40df24d)
 
@@ -40,7 +40,7 @@ Each air pollutant’s concentrations are predicted not only as average (mean) v
 
 ### Synthetic Hourly Air Pollution Prediction Averages for England (SynthHAPPE)
 
-![SynthHAPPE Visulisation](content/images/synth_happe.gif)
+![SynthHAPPE Visulisation](content/images/synth_happe.webp)
 
 [Publication](https://catalogue.ceda.ac.uk/uuid/fe877f3035c042478fd67de21f5f445a/)
 
@@ -137,7 +137,6 @@ Air pollution presents a significant health risk to individuals worldwide, with 
 When an Autonomous Underwater Vehicle (AUV) is exploring an underwater structure, the video / image feed gives a snapshot of the current detail of the structure that is being observed. Underwater structures such as shipwrecks and caves are routinely monitored and explored for varies reasons. The set of all images that an AUV gathered during a deployment is currently unused and discarded after it surfaces. The aim of this project is to improve the understanding of the structure by using this redundant data. During the project, a program was developed to create a single persistent comprehensive model of the structure being photographed. Implementing a range of functionality such as image manipulation, a 3D viewer, and an overview Graphical User Interface, alongside integrating external libraries and software into the program such as software to complete the point cloud reconstruction of the geometry of the structure. During the project, a simulation for an underwater environment was created, allowing for an example data set to be easily created.
 
 The simulation has the ability to swap out the structure being photographed while also allowing for the details of the simulation to be changed, such as the lighting, turbidity or occluders of the underwater environment being simulated. The contribution of this project can be seen as the solving of six key problems identified during the initial investigation into the problem. The first was to create a pipeline to allow the creation of a model to inform the user of the geometry of the structure (1), while also allowing these models to be stored and indexed so that the structure can be monitored over time (2). An investigation into image manipulation techniques to compensate for the effects of underwater photography was also needed (3), and the development of a set of best practices for the pipeline complemented (4). The program also implemented features to make use of all available information from the initial data set to create supporting information, such as the path the AUV took while collecting the images for the data set (5). Finally, all these seemingly disconnected stages of the pipeline were collected together with an overarching graphical user interface, achieving task centralization (6).
-
 
 
 
