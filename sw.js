@@ -5,8 +5,6 @@ const CORE_ASSETS = [
   "/styles.css",
   "/app.js",
   "/manifest.webmanifest",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png",
   "/content/about.md",
   "/content/projects.md",
   "/content/publications.md",
