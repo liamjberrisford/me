@@ -194,10 +194,21 @@ Details forthcoming — add co-authors, venue, and DOI here.`,
 
 // Utility: very simple Markdown → HTML converter
 function formatInline(text) {
+  const videoReady = ["ml_happg", "ml_happe", "ngarch", "synth_happe", "wildfire", "life"];
   return text
     .replace(
       /!\[([^\]]*)\]\(([^)]+)\)/g,
-      '<img src="$2" alt="$1" loading="lazy" class="content-image" data-caption="$1" />'
+      (_match, alt, src) => {
+        const isVideoCandidate =
+          src.endsWith(".webp") && videoReady.some((name) => src.includes(name));
+        if (isVideoCandidate) {
+          const base = src.replace(/\.webp$/, "");
+          const videoSrc = `${base}.mp4`;
+          const poster = `${base}.png`;
+          return `<img src="${src}" alt="${alt}" loading="lazy" class="content-image" data-caption="${alt}" data-video="${videoSrc}" data-poster="${poster}" />`;
+        }
+        return `<img src="${src}" alt="${alt}" loading="lazy" class="content-image" data-caption="${alt}" />`;
+      }
     )
     .replace(
       /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
@@ -315,6 +326,7 @@ async function loadSection(id) {
     const md = await getMarkdownForSection(section);
     const html = simpleMarkdownToHtml(md);
     contentEl.innerHTML = html;
+    enhanceMedia();
     buildSubNav(section.id);
     setActiveNav(section.id);
     document.title = `Liam Berrisford | ${section.label}`;
@@ -461,6 +473,65 @@ function showSubSection(id) {
     });
   });
   setActiveSubNav(id);
+}
+
+function enhanceMedia() {
+  const mediaImgs = document.querySelectorAll('#content-inner img[data-video]');
+  mediaImgs.forEach((img) => {
+    const videoSrc = img.dataset.video;
+    const poster = img.dataset.poster || img.getAttribute("src");
+    const alt = img.getAttribute("alt") || "";
+
+    const video = document.createElement("video");
+    video.className = "content-video";
+    video.setAttribute("playsinline", "");
+    video.setAttribute("muted", "");
+    video.setAttribute("loop", "");
+    video.setAttribute("autoplay", "");
+    video.setAttribute("preload", "metadata");
+    video.setAttribute("poster", poster);
+
+    const source = document.createElement("source");
+    source.src = videoSrc;
+    source.type = "video/mp4";
+    video.appendChild(source);
+
+    const fallbackImg = document.createElement("img");
+    fallbackImg.src = img.getAttribute("src");
+    fallbackImg.alt = alt;
+    fallbackImg.loading = "lazy";
+    fallbackImg.className = "content-image";
+    video.appendChild(fallbackImg);
+
+    const parentFig = img.closest("figure");
+    const figcaptionExists = parentFig && parentFig.querySelector("figcaption");
+
+    if (parentFig) {
+      img.replaceWith(video);
+      if (!figcaptionExists && alt) {
+        const cap = document.createElement("figcaption");
+        cap.textContent = alt;
+        parentFig.appendChild(cap);
+      }
+    } else {
+      const fig = document.createElement("figure");
+      fig.className = "content-figure";
+      fig.appendChild(video);
+      if (alt) {
+        const cap = document.createElement("figcaption");
+        cap.textContent = alt;
+        fig.appendChild(cap);
+      }
+      img.replaceWith(fig);
+    }
+    // Kick off playback when ready; ignore failures (e.g., low-power mode)
+    video.addEventListener("canplay", () => {
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {});
+      }
+    });
+  });
 }
 
 async function getMarkdownForSection(section) {

@@ -333,6 +333,17 @@ b {
   object-fit: cover;
 }
 
+.content-video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  background: var(--bg-elevated);
+}
+
 .content-figure {
   margin: 0.8rem calc(var(--content-padding) * -1) 2rem;
   width: calc(100% + var(--content-padding) * 2);

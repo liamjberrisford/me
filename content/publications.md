@@ -143,5 +143,3 @@ The simulation has the ability to swap out the structure being photographed whil
 
 
 
-
-

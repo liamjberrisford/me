@@ -28,13 +28,13 @@ The course also emphasises good software development practice, including impleme
 
 ### Introduction to Julia
 
-![Introduction to Julia](content/images/julia_game_of_life.webp)
+![Introduction to Julia](content/images/life.webp)
 
 The Introduction to Julia course is aimed at learners already familiar with basic programming and focuses on Julia’s distinctive language features and design philosophy. It develops fluency with the Julia REPL (including package and help modes), core language constructs (data types, variables, and control flow), and function design using multiple dispatch. The course covers working with arrays and matrices for numerical computing, performing I/O with common data formats, creating visualisations using Plots.jl, and managing dependencies and reproducible projects with Julia’s Pkg system. It also introduces performance profiling and optimisation, culminating in a capstone project implementing and extending Conway’s Game of Life in Julia.
 
 ## Supervision 
 
-![Wildfire Cellular Automata](content/images/wildfire_ca.webp)
+![Wildfire Cellular Automata](content/images/wildfire.webp)
 
 ### Postgraduate (PG)
 
@@ -96,4 +96,3 @@ The Introduction to Julia course is aimed at learners already familiar with basi
 **Imposter Syndrome Enrichment Lectures**  
   - Created and delivered repeated enrichment sessions on imposter syndrome.  
   - Aimed at supporting student well-being, confidence, and belonging in technical disciplines. 
-
