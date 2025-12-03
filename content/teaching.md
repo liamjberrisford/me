@@ -4,7 +4,7 @@
 
 ### Introduction to GPUs
 
-![GPU training](content/images/gpu_training.png)
+![GPU training](_static/images/gpu_training.png)
 
 [Course Website](https://liamjberrisford.github.io/GPU_Training/README.html)
 
@@ -12,7 +12,7 @@ Designed and developed a hands-on training course introducing researchers and te
 
 ### Train the Trainer 
 
-![Train the Trainer](content/images/train_the_trainer.png)
+![Train the Trainer](_static/images/train_the_trainer.png)
 
 I recently led the design and facilitation of a comprehensive “Train the Trainer” programme aimed at developing the pedagogical capabilities of professionals who teach technical subjects, with a particular emphasis on programming and data science. This five-session course was developed to support educators, many of whom are highly skilled practitioners but have limited formal training in teaching, in creating inclusive, effective, and engaging learning environments. Grounded in evidence-based educational theory and practice, the course introduced participants to key concepts, including Universal Design for Learning (UDL), instructional design frameworks such as Backward Design and the ADDIE model, Bloom’s Taxonomy for cognitive development, and differentiated instruction. The sessions also addressed how to identify and respond to common challenges faced by learners, particularly those new to technical disciplines, and explored strategies for fostering growth mindsets, reducing programming anxiety, and building psychological safety in the classroom.
 
@@ -20,7 +20,7 @@ Participants engaged with a combination of lectures, structured workbooks, inter
 
 ### Python for Data Analysis 
 
-![Python For Data Analysis](content/images/python_for_data_analysis.png)
+![Python For Data Analysis](_static/images/python_for_data_analysis.png)
 
 The Python for Data Analysis course provides an in-depth introduction to Python for research-focused data work, combining core programming skills with essential tools from the scientific Python ecosystem. It covers fundamental Python concepts (data types, control structures, and functions) alongside practical use of NumPy for numerical operations and Pandas for loading, cleaning, and manipulating datasets in research contexts. Participants learn to create static and interactive visualisations using Matplotlib and Plotly, and are introduced to basic machine learning workflows with Scikit-Learn for predictive modelling.
 
@@ -28,13 +28,13 @@ The course also emphasises good software development practice, including impleme
 
 ### Introduction to Julia
 
-![Introduction to Julia](content/images/life.webp)
+![Introduction to Julia](_static/images/life.png)
 
 The Introduction to Julia course is aimed at learners already familiar with basic programming and focuses on Julia’s distinctive language features and design philosophy. It develops fluency with the Julia REPL (including package and help modes), core language constructs (data types, variables, and control flow), and function design using multiple dispatch. The course covers working with arrays and matrices for numerical computing, performing I/O with common data formats, creating visualisations using Plots.jl, and managing dependencies and reproducible projects with Julia’s Pkg system. It also introduces performance profiling and optimisation, culminating in a capstone project implementing and extending Conway’s Game of Life in Julia.
 
 ## Supervision 
 
-![Wildfire Cellular Automata](content/images/wildfire.webp)
+![Wildfire Cellular Automata](_static/images/wildfire.png)
 
 ### Postgraduate (PG)
 

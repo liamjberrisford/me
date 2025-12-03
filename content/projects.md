@@ -4,7 +4,7 @@
 
 ### Met Office NG-ARCH: LFRic Spectral Gravity Wave Drag Optimisation 
 
-![LFRic optimisation](content/images/ngarch.webp)
+![LFRic optimisation](_static/images/ngarch.png)
 
 As part of the NG-ARCH initiative, I led a comprehensive optimisation of the Spectral Gravity Wave Drag (SGWD) component within the Met Office’s LFRic atmospheric model, using the PSyclone code generation framework. This work focused on applying advanced performance transformations to a Fortran implementation of Spectral Gravity Wave Drag and systematically evaluating both CPU-based (OpenMP) and GPU-based (OpenMP offloading, OpenACC) implementations.
 
@@ -16,7 +16,7 @@ This work delivered a validated set of performance improvements for the SGWD ker
 
 ### GPU Accelerated openFOAM (gpuFOAM)
 
-![openFOAM Tutorial Test Case Visualisation](content/images/openfoam.png)
+![openFOAM Tutorial Test Case Visualisation](_static/images/openfoam.png)
 
 As part of the gpuFOAM project, I am responsible for benchmarking C++ code that leverages GPUs via stdpar on a range of HPC platforms (e.g. Isambard-AI) across multiple GPU architectures (e.g. GH200, MI300A).
 
@@ -24,7 +24,7 @@ As part of the gpuFOAM project, I am responsible for benchmarking C++ code that 
 
 ### Environmental Insights Python Package
 
-![Environmental Insights](content/images/ei.png)
+![Environmental Insights](_static/images/ei.png)
 
 The package, designed for simplicity and inclusivity, enables users from diverse backgrounds, including academic, governmental, and non-governmental sectors, to retrieve historical air pollution data and utilize machine learning models for forecasting future conditions. It offers dynamic visualizations and analytical tools to enhance user engagement and comprehension of air pollution trends and implications. Environmental Insights aims to lower the barriers to air pollution data access, promoting informed decision-making and encouraging public advocacy for air quality improvements. By offering an open-source, user-friendly platform, the project contributes significantly to the democratization of environmental data, making it a valuable resource for stakeholders aiming to explore and mitigate the effects of air pollution across various sectors.
 
@@ -32,7 +32,7 @@ The package, designed for simplicity and inclusivity, enables users from diverse
 
 ### Coding for Reproducible Research
 
-![CfRR](content/images/cfrr.png)
+![CfRR](_static/images/cfrr.png)
 
 [CfRR Homepage](https://coding-for-reproducible-research.github.io/CfRR_Courses/home_page.html)
 
@@ -40,7 +40,7 @@ The Coding for Reproducible Research (CfRR) website is the public-facing home of
 
 ### Environmental Insights Interactive
 
-![Environmental Insights Interactive](content/images/ei_interactive.png)
+![Environmental Insights Interactive](_static/images/ei_interactive.png)
 
 Environmental Insights Interactive is a web application that showcases the capabilities of the environmental-insights Python package by providing an interactive way to explore air pollution data and model outputs. It combines a Python/Flask backend, which runs the air quality models, manages data and generates PDFs, with a React-based frontend that displays maps, charts and other visualisations for users. Together, these components let users query locations, view estimated pollution levels and explore environmental insights through a modern web interface.
 
@@ -48,6 +48,6 @@ Environmental Insights Interactive is a web application that showcases the capab
 
 ### College of Policing Behavioural Change Dashboards 
 
-![Example Dashboard used for the Pulse Check Survey](content/images/police_pulse_check.png)
+![Example Dashboard used for the Pulse Check Survey](_static/images/police_pulse_check.png)
 
 I worked as a Research Software Engineer, a UKRI-funded behavioural change initiative led by the College of Policing, supporting three police forces in England and Wales. The project aimed to help supervisors address sexism and racism within policing culture by running short, monthly “pulse” surveys capturing officers’ and staff’s lived experiences of workplace culture. I led the design and implementation of a suite of Power BI dashboards for supervisors, participating officers and staff, and line managers overseeing monthly action plans, translating thousands of survey responses from over 1,800 personnel into clear, accessible insights. This involved complex DAX development, visual design, and rapid troubleshooting under tight timelines, all while maintaining role-based anonymity within highly non-uniform team structures. I iteratively refined the tools using feedback from pilot studies, cognitive testing, and stakeholder quality assurance to ensure the dashboards were both trusted and practically useful. This work enabled leadership teams to monitor behavioural change interventions, respond quickly to emerging cultural issues, and make data-informed decisions with confidence.

@@ -4,7 +4,7 @@
 
 ### Machine Learning for Hourly Air Pollution Prediction - Global (ML-HAPPG)
 
-![ML-HAPPG Visulisation](content/images/ml_happg.webp)
+![ML-HAPPG Visulisation](_static/images/ml_happg.png)
 
 [Publication](https://catalogue.ceda.ac.uk/uuid/7f91b1326a324caa9e436b8fdef4a0d8/)
 
@@ -20,7 +20,7 @@ Each air pollutant's concentrations are predicted not only as average (mean) val
 
 ### Machine Learning for Hourly Air Pollution Prediction in England (ML-HAPPE)
 
-![ML-HAPPE Visulisation](content/images/ml_happe.webp)
+![ML-HAPPE Visulisation](_static/images/ml_happe.png)
 
 [Publication](https://catalogue.ceda.ac.uk/uuid/fc735f9878ed43e293b85f85e40df24d)
 
@@ -40,7 +40,7 @@ Each air pollutant’s concentrations are predicted not only as average (mean) v
 
 ### Synthetic Hourly Air Pollution Prediction Averages for England (SynthHAPPE)
 
-![SynthHAPPE Visulisation](content/images/synth_happe.webp)
+![SynthHAPPE Visulisation](_static/images/synth_happe.png)
 
 [Publication](https://catalogue.ceda.ac.uk/uuid/fe877f3035c042478fd67de21f5f445a/)
 
@@ -62,7 +62,7 @@ Each pollutant’s concentrations are predicted not only as average (mean) value
 
 ### A data-driven supervised machine learning approach to estimating global ambient air pollution concentrations with associated prediction intervals
 
-![Visulisation](content/images/paper_3.png)
+![Visulisation](_static/images/paper_3.png)
 
 [Publication](https://royalsocietypublishing.org/doi/full/10.1098/rsos.241288)
 
@@ -80,7 +80,7 @@ Additionally, the model’s performance across various geographical locations is
 
 ### Environmental Insights: Democratizing access to ambient air pollution data and predictive analytics with an open-source Python package
 
-![Visulisation](content/images/paper_4.png)
+![Visulisation](_static/images/paper_4.png)
 
 [Publication](https://www.sciencedirect.com/science/article/pii/S1364815224001920)
 
@@ -88,7 +88,7 @@ Ambient air pollution is a pervasive issue with wide-ranging effects on human he
 
 ### A framework for scalable ambient air pollution concentration estimation
 
-![Visulisation](content/images/paper_2.png)
+![Visulisation](_static/images/paper_2.png)
 
 [Publication](https://www.cambridge.org/core/journals/environmental-data-science/article/framework-for-scalable-ambient-air-pollution-concentration-estimation/A6CA26BE98A5C4DD21F096DE0F608BB5)
 
@@ -108,7 +108,7 @@ at a higher resolution than was previously possible.
 
 ### Estimating annual ambient air pollution using structural properties of road networks
 
-![Visulisation](content/images/paper_1.png)
+![Visulisation](_static/images/paper_1.png)
 
 [Publication](https://journals.sagepub.com/doi/full/10.1177/23998083241230707)
 
@@ -120,7 +120,7 @@ Our approach is an inexpensive methods of estimating annual air pollution concen
 
 ### Operationalising Ambient Air Pollution Estimation
 
-![Operationalising Ambient Air Pollution Estimation ](content/images/oaape.png)
+![Operationalising Ambient Air Pollution Estimation ](_static/images/oaape.png)
 
 [Publication](https://ore.exeter.ac.uk/articles/thesis/Operationalising_Ambient_Air_Pollution_Estimation/29811452?file=56857673)
 
@@ -130,14 +130,13 @@ Air pollution presents a significant health risk to individuals worldwide, with 
 
 ### Initial Underwater Structure Exploration Planning
 
-![IUSEP](content/images/IUSEP.png)
+![IUSEP](_static/images/IUSEP.png)
 
 [Dissertation (BSc) Publication](https://doi.org/10.6084/m9.figshare.30745208)
 
 When an Autonomous Underwater Vehicle (AUV) is exploring an underwater structure, the video / image feed gives a snapshot of the current detail of the structure that is being observed. Underwater structures such as shipwrecks and caves are routinely monitored and explored for varies reasons. The set of all images that an AUV gathered during a deployment is currently unused and discarded after it surfaces. The aim of this project is to improve the understanding of the structure by using this redundant data. During the project, a program was developed to create a single persistent comprehensive model of the structure being photographed. Implementing a range of functionality such as image manipulation, a 3D viewer, and an overview Graphical User Interface, alongside integrating external libraries and software into the program such as software to complete the point cloud reconstruction of the geometry of the structure. During the project, a simulation for an underwater environment was created, allowing for an example data set to be easily created.
 
 The simulation has the ability to swap out the structure being photographed while also allowing for the details of the simulation to be changed, such as the lighting, turbidity or occluders of the underwater environment being simulated. The contribution of this project can be seen as the solving of six key problems identified during the initial investigation into the problem. The first was to create a pipeline to allow the creation of a model to inform the user of the geometry of the structure (1), while also allowing these models to be stored and indexed so that the structure can be monitored over time (2). An investigation into image manipulation techniques to compensate for the effects of underwater photography was also needed (3), and the development of a set of best practices for the pipeline complemented (4). The program also implemented features to make use of all available information from the initial data set to create supporting information, such as the path the AUV took while collecting the images for the data set (5). Finally, all these seemingly disconnected stages of the pipeline were collected together with an overarching graphical user interface, achieving task centralization (6).
-
 
 
 

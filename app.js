@@ -199,12 +199,12 @@ function formatInline(text) {
     .replace(
       /!\[([^\]]*)\]\(([^)]+)\)/g,
       (_match, alt, src) => {
-        const isVideoCandidate =
-          src.endsWith(".webp") && videoReady.some((name) => src.includes(name));
-        if (isVideoCandidate) {
-          const base = src.replace(/\.webp$/, "");
-          const videoSrc = `${base}.mp4`;
-          const poster = `${base}.png`;
+        const path = src.split("?")[0];
+        const filename = path.split("/").pop() || "";
+        const baseName = filename.replace(/\.[^.]+$/, "");
+        if (videoReady.includes(baseName)) {
+          const videoSrc = `_static/videos/${baseName}.mp4`;
+          const poster = `_static/images/${baseName}.png`;
           return `<img src="${src}" alt="${alt}" loading="lazy" class="content-image" data-caption="${alt}" data-video="${videoSrc}" data-poster="${poster}" />`;
         }
         return `<img src="${src}" alt="${alt}" loading="lazy" class="content-image" data-caption="${alt}" />`;
