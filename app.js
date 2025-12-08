@@ -194,7 +194,7 @@ Details forthcoming — add co-authors, venue, and DOI here.`,
 
 // Utility: very simple Markdown → HTML converter
 function formatInline(text) {
-  const videoReady = ["ml_happg", "ml_happe", "ngarch", "synth_happe", "wildfire", "life"];
+  const videoReady = ["ml_happg", "ml_happe", "ngarch", "synth_happe", "wildfire", "life", "openfoam"];
   return text
     .replace(
       /!\[([^\]]*)\]\(([^)]+)\)/g,
