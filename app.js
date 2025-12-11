@@ -192,22 +192,68 @@ Details forthcoming — add co-authors, venue, and DOI here.`,
 - **Young Enterprise Ignite** (Assistant Managing Director & Operations Director) — student-run company generating over £5,000 revenue and delivering products to clients such as Virgin Group, JCB, and Wedgwood.`
 };
 
+const videoReady = new Set(["ml_happg", "ml_happe", "ngarch", "synth_happe", "wildfire", "life", "openfoam"]);
+
+function escapeAttr(text = "") {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/'/g, "&#39;");
+}
+
+function isLocalStaticPng(src = "") {
+  return /^\/?_static\/images\/.+\.png$/i.test(src);
+}
+
+function toWebpPath(src = "") {
+  return src.replace(/\.png$/i, ".webp");
+}
+
+function buildResponsiveImage({ alt = "", src = "", extraAttrs = "" }) {
+  const escapedAlt = escapeAttr(alt);
+  const baseAttributes = [
+    `src="${src}"`,
+    `alt="${escapedAlt}"`,
+    'loading="lazy"',
+    'decoding="async"',
+    'class="content-image"',
+    `data-caption="${escapedAlt}"`
+  ];
+
+  if (extraAttrs && extraAttrs.trim()) {
+    baseAttributes.push(extraAttrs.trim());
+  }
+
+  const attributes = baseAttributes.join(" ");
+  const markup = isLocalStaticPng(src)
+    ? `<picture><source srcset="${toWebpPath(src)}" type="image/webp" /><img ${attributes} /></picture>`
+    : `<img ${attributes} />`;
+
+  return markup;
+}
+
 // Utility: very simple Markdown → HTML converter
 function formatInline(text) {
-  const videoReady = ["ml_happg", "ml_happe", "ngarch", "synth_happe", "wildfire", "life", "openfoam"];
   return text
     .replace(
       /!\[([^\]]*)\]\(([^)]+)\)/g,
-      (_match, alt, src) => {
-        const path = src.split("?")[0];
+      (_match, alt, rawSrc) => {
+        const path = rawSrc.split("?")[0];
         const filename = path.split("/").pop() || "";
         const baseName = filename.replace(/\.[^.]+$/, "");
-        if (videoReady.includes(baseName)) {
+        const normalizedSrc = rawSrc.startsWith("/") ? rawSrc.slice(1) : rawSrc;
+
+        if (videoReady.has(baseName)) {
           const videoSrc = `_static/videos/${baseName}.mp4`;
-          const poster = `_static/images/${baseName}.png`;
-          return `<img src="${src}" alt="${alt}" loading="lazy" class="content-image" data-caption="${alt}" data-video="${videoSrc}" data-poster="${poster}" />`;
+          const videoH265Src = `_static/videos/${baseName}-h265.mp4`;
+          const poster = isLocalStaticPng(normalizedSrc) ? toWebpPath(normalizedSrc) : normalizedSrc;
+          const extraAttrs = `data-video="${videoSrc}" data-video-h265="${videoH265Src}" data-poster="${poster}"`;
+          return buildResponsiveImage({ alt, src: normalizedSrc, extraAttrs });
         }
-        return `<img src="${src}" alt="${alt}" loading="lazy" class="content-image" data-caption="${alt}" />`;
+
+        return buildResponsiveImage({ alt, src: normalizedSrc });
       }
     )
     .replace(
@@ -288,11 +334,13 @@ function simpleMarkdownToHtml(md) {
     flushList();
     const text = formatInline(line);
 
-    const imgOnlyMatch = text.trim().match(/^<img\b[^>]*>/i);
+    const trimmed = text.trim();
+    const imgOnlyMatch = trimmed.match(/^<(picture\b[\s\S]*<\/picture>|img\b[^>]*>)/i);
     if (imgOnlyMatch) {
-      const altMatch = text.match(/alt="([^"]*)"/i);
+      const altMatch = trimmed.match(/alt="([^"]*)"/i);
       const caption = altMatch ? altMatch[1] : "";
-      html += `<figure class="content-figure">${text}<figcaption>${caption}</figcaption></figure>`;
+      const figcaption = caption ? `<figcaption>${caption}</figcaption>` : "";
+      html += `<figure class="content-figure">${trimmed}${figcaption}</figure>`;
     } else {
       html += `<p>${text}</p>`;
     }
@@ -477,37 +525,98 @@ function showSubSection(id) {
 
 function enhanceMedia() {
   const mediaImgs = document.querySelectorAll('#content-inner img[data-video]');
+  if (!mediaImgs.length) return;
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const supportsIntersectionObserver = typeof IntersectionObserver !== "undefined";
+
+  const loadSources = (videoEl) => {
+    const sources = Array.from(videoEl.querySelectorAll("source"));
+    let loaded = false;
+    sources.forEach((source) => {
+      if (source.dataset.src && !source.src) {
+        source.src = source.dataset.src;
+        loaded = true;
+      }
+    });
+    if (loaded) {
+      videoEl.load();
+    }
+  };
+
+  const tryAutoplay = (videoEl) => {
+    if (prefersReducedMotion) return;
+    const playPromise = videoEl.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {});
+    }
+  };
+
+  const observer = supportsIntersectionObserver
+    ? new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const videoEl = entry.target;
+            loadSources(videoEl);
+            videoEl.addEventListener("canplay", () => tryAutoplay(videoEl), { once: true });
+            observer.unobserve(videoEl);
+          });
+        },
+        { rootMargin: "200px 0px" }
+      )
+    : null;
+
   mediaImgs.forEach((img) => {
     const videoSrc = img.dataset.video;
+    const videoH265 = img.dataset.videoH265;
     const poster = img.dataset.poster || img.getAttribute("src");
     const alt = img.getAttribute("alt") || "";
+    const parentFig = img.closest("figure");
+    const parentPicture = img.closest("picture");
+    const replaceTarget = parentPicture || img;
 
     const video = document.createElement("video");
     video.className = "content-video";
     video.setAttribute("playsinline", "");
-    video.setAttribute("muted", "");
-    video.setAttribute("loop", "");
-    video.setAttribute("autoplay", "");
-    video.setAttribute("preload", "metadata");
-    video.setAttribute("poster", poster);
+    video.muted = true;
+    video.preload = "none";
+    if (poster) {
+      video.poster = poster;
+    }
+    if (!prefersReducedMotion) {
+      video.autoplay = true;
+      video.loop = true;
+    } else {
+      video.controls = true;
+    }
 
-    const source = document.createElement("source");
-    source.src = videoSrc;
-    source.type = "video/mp4";
-    video.appendChild(source);
+    if (videoH265) {
+      const h265Source = document.createElement("source");
+      h265Source.dataset.src = videoH265;
+      h265Source.type = "video/mp4; codecs=hvc1";
+      video.appendChild(h265Source);
+    }
+
+    if (videoSrc) {
+      const mp4Source = document.createElement("source");
+      mp4Source.dataset.src = videoSrc;
+      mp4Source.type = "video/mp4";
+      video.appendChild(mp4Source);
+    }
 
     const fallbackImg = document.createElement("img");
     fallbackImg.src = img.getAttribute("src");
     fallbackImg.alt = alt;
     fallbackImg.loading = "lazy";
+    fallbackImg.decoding = "async";
     fallbackImg.className = "content-image";
     video.appendChild(fallbackImg);
 
-    const parentFig = img.closest("figure");
     const figcaptionExists = parentFig && parentFig.querySelector("figcaption");
 
     if (parentFig) {
-      img.replaceWith(video);
+      replaceTarget.replaceWith(video);
       if (!figcaptionExists && alt) {
         const cap = document.createElement("figcaption");
         cap.textContent = alt;
@@ -522,15 +631,15 @@ function enhanceMedia() {
         cap.textContent = alt;
         fig.appendChild(cap);
       }
-      img.replaceWith(fig);
+      replaceTarget.replaceWith(fig);
     }
-    // Kick off playback when ready; ignore failures (e.g., low-power mode)
-    video.addEventListener("canplay", () => {
-      const playPromise = video.play();
-      if (playPromise && typeof playPromise.catch === "function") {
-        playPromise.catch(() => {});
-      }
-    });
+
+    if (supportsIntersectionObserver && observer) {
+      observer.observe(video);
+    } else {
+      loadSources(video);
+      video.addEventListener("canplay", () => tryAutoplay(video), { once: true });
+    }
   });
 }
 

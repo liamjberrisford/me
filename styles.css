@@ -344,6 +344,17 @@ b {
   background: var(--bg-elevated);
 }
 
+.content-figure picture {
+  display: block;
+  width: 100%;
+}
+
+.content-figure picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .content-figure {
   margin: 0.8rem calc(var(--content-padding) * -1) 2rem;
   width: calc(100% + var(--content-padding) * 2);
