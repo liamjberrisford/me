@@ -6,7 +6,7 @@
 
 ![GPU training](_static/images/gpu_training.png)
 
-[Course Website](https://liamjberrisford.github.io/GPU_Training/README.html)
+[Introduction to GPUs Course Website](https://liamjberrisford.github.io/GPU_Training/README.html)
 
 Designed and developed a hands-on training course introducing researchers and technical practitioners to GPU programming. The course covers core GPU concepts, including memory hierarchies, thread models, and parallelisation strategies using OpenMP, CUDA, and Python libraries such as CuPy. Participants learn performance analysis techniques and apply them to real-world scientific computing tasks. Materials include lecture notes, exercises, and example code, supporting both CPU-GPU comparisons and practical benchmarking workflows.
 

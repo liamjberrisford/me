@@ -6,7 +6,7 @@
 
 ![ML-HAPPG Visulisation](_static/images/ml_happg.png)
 
-[Publication](https://catalogue.ceda.ac.uk/uuid/7f91b1326a324caa9e436b8fdef4a0d8/)
+[ML-HAPPG CEDA Dataset Record](https://catalogue.ceda.ac.uk/uuid/7f91b1326a324caa9e436b8fdef4a0d8/)
 
 This dataset contains estimates of air pollution levels across the globe for every hour of the year 2022. It covers five major air pollutants that can affect human health and the environment. The data cover major air pollutants, including:
 
@@ -22,7 +22,7 @@ Each air pollutant's concentrations are predicted not only as average (mean) val
 
 ![ML-HAPPE Visulisation](_static/images/ml_happe.png)
 
-[Publication](https://catalogue.ceda.ac.uk/uuid/fc735f9878ed43e293b85f85e40df24d)
+[ML-HAPPE CEDA Dataset Record](https://catalogue.ceda.ac.uk/uuid/fc735f9878ed43e293b85f85e40df24d)
 
 This dataset contains estimates of air pollution levels across England for every hour of the year 2018. It covers seven major air pollutants that can affect human health and the environment. The data cover major air pollutants, including:
 
@@ -42,7 +42,7 @@ Each air pollutant’s concentrations are predicted not only as average (mean) v
 
 ![SynthHAPPE Visulisation](_static/images/synth_happe.png)
 
-[Publication](https://catalogue.ceda.ac.uk/uuid/fe877f3035c042478fd67de21f5f445a/)
+[SynthHAPPE CEDA Dataset Record](https://catalogue.ceda.ac.uk/uuid/fe877f3035c042478fd67de21f5f445a/)
 
 This dataset contains synthetic estimates of ambient air pollution concentrations across England, provided as hourly averages representing typical conditions. The data cover major air pollutants, including:
 
@@ -64,7 +64,7 @@ Each pollutant’s concentrations are predicted not only as average (mean) value
 
 ![Visulisation](_static/images/paper_3.png)
 
-[Publication](https://royalsocietypublishing.org/doi/full/10.1098/rsos.241288)
+[Royal Society Open Science Publication](https://royalsocietypublishing.org/doi/full/10.1098/rsos.241288)
 
 Global ambient air pollution, a transboundary challenge, is typically addressed through interventions relying on data from spatially sparse and heterogeneously placed monitoring stations. These stations often encounter temporal data gaps due to issues such as power outages. In response, we have developed a scalable, data-driven, supervised machine learning framework. The models produced by the framework are designed to impute missing temporal and spatial measurements, thereby generating a comprehensive dataset for air pollutants including:
 
@@ -82,7 +82,7 @@ Additionally, the model’s performance across various geographical locations is
 
 ![Visulisation](_static/images/paper_4.png)
 
-[Publication](https://www.sciencedirect.com/science/article/pii/S1364815224001920)
+[Environmental Modelling and Software Publication](https://www.sciencedirect.com/science/article/pii/S1364815224001920)
 
 Ambient air pollution is a pervasive issue with wide-ranging effects on human health, ecosystem vitality, and economic structures. Utilizing data on ambient air pollution concentrations, researchers can perform comprehensive analyses to uncover the multifaceted impacts of air pollution across society. To this end, we introduce Environmental Insights, an open-source Python package designed to democratize access to air pollution concentration data. This tool enables users to easily retrieve historical air pollution data and employ a machine learning model for forecasting potential future conditions. Moreover, Environmental Insights includes a suite of tools aimed at facilitating the dissemination of analytical findings and enhancing user engagement through dynamic visualizations. This comprehensive approach ensures that the package caters to the diverse needs of individuals looking to explore and understand air pollution trends and their implications.
 
@@ -90,7 +90,7 @@ Ambient air pollution is a pervasive issue with wide-ranging effects on human he
 
 ![Visulisation](_static/images/paper_2.png)
 
-[Publication](https://www.cambridge.org/core/journals/environmental-data-science/article/framework-for-scalable-ambient-air-pollution-concentration-estimation/A6CA26BE98A5C4DD21F096DE0F608BB5)
+[Environmental Data Science Publication](https://www.cambridge.org/core/journals/environmental-data-science/article/framework-for-scalable-ambient-air-pollution-concentration-estimation/A6CA26BE98A5C4DD21F096DE0F608BB5)
 
 Ambient air pollution remains a global challenge, with adverse impacts on health and the environment. Addressing air pollution requires reliable data on pollutant concentrations, which form the foundation for interventions aimed at improving air quality. However, in many regions, including the United Kingdom, air pollution monitoring networks are characterized by spatial sparsity, heterogeneous placement, and frequent temporal data gaps, often due to issues such as power outages We introduce a scalable, data-driven, supervised machine learning model framework designed to address temporal and spatial data gaps by filling missing measurements within the United Kingdom. The machine learning framework used is LightGBM, a gradient boosting algorithm based on decision trees, for efficient and scalable modeling. This approach provides a comprehensive dataset for England throughout 2018 at a 1 km² hourly resolution.
 
@@ -110,7 +110,7 @@ at a higher resolution than was previously possible.
 
 ![Visulisation](_static/images/paper_1.png)
 
-[Publication](https://journals.sagepub.com/doi/full/10.1177/23998083241230707)
+[Environment and Planning B: Urban Analytics and City Science Publication](https://journals.sagepub.com/doi/full/10.1177/23998083241230707)
 
 In recent years, the world has become increasingly concerned about air pollution. Particularly, High-Income Countries (HIC) and Upper Middle-Income Countries (UMIC) are implementing systems to monitor air pollution on a large scale to aid decision-making. Such efforts are essential, but they have at least three shortcomings, they are costly, they are slow to deploy and they focus on urban areas, which leads to urban–rural inequalities. Here, we show that we can estimate annual air pollution using open-source information about the structural properties of roads. We focus on England and Wales in the United Kingdom (UK) in this paper, although we argue that our methods are independent of specific country features.
 
@@ -120,9 +120,9 @@ Our approach is an inexpensive methods of estimating annual air pollution concen
 
 ### Operationalising Ambient Air Pollution Estimation
 
-![Operationalising Ambient Air Pollution Estimation ](_static/images/oaape.png)
+![Operationalising Ambient Air Pollution Estimation](_static/images/oaape.png)
 
-[Publication](https://ore.exeter.ac.uk/articles/thesis/Operationalising_Ambient_Air_Pollution_Estimation/29811452?file=56857673)
+[PhD Thesis Publication](https://ore.exeter.ac.uk/articles/thesis/Operationalising_Ambient_Air_Pollution_Estimation/29811452?file=56857673)
 
 Air pollution presents a significant health risk to individuals worldwide, with the estimation of ambient air pollution levels being an essential step in tackling the global health burden of air pollution due to the high cost of individual monitoring stations. This thesis outlines research done in fulfilment of a Ph.D. in Environmental Intelligence that looks at the use of machine learning to provide an alternative to traditional methods that fills a need for a scalable method of estimating ambient air pollution with varying spatial and temporal resolution to meet the demands of various stakeholders. Machine learning allows for estimations to be made at speed, allowing for deployment in an operational capacity to improve decision velocity and pivot interventions from reactive to proactive. The thesis presents how machine learning can estimate air pollution in the UK at the annual level, with a subsequent approach presented to estimate air pollution concentrations at the hourly and 1km2 temporal and spatial resolution in England. The merit of the approach is further explored with a global air pollution concentration model presented to address global inequality of air pollution intelligence, ensuring that no one is left behind when tackling the air pollution crisis. Finally, an open-source Python package and companion analysis of how the intelligence provided can help decision-making concerning decisions such as outdoor school activities timing, and clean air zones are presented, ensuring dissemination of the work to various stakeholders.
 

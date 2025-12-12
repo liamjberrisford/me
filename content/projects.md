@@ -6,25 +6,31 @@
 
 ![LFRic optimisation](_static/images/ngarch.png)
 
-As part of the NG-ARCH initiative, I led a comprehensive optimisation of the Spectral Gravity Wave Drag (SGWD) component within the Met Office’s LFRic atmospheric model, using the PSyclone code generation framework. This work focused on applying advanced performance transformations to a Fortran implementation of Spectral Gravity Wave Drag and systematically evaluating both CPU-based (OpenMP) and GPU-based (OpenMP offloading, OpenACC) implementations.
+As part of the NG-ARCH initiative, I led a comprehensive performance optimisation of the Spectral Gravity Wave Drag (SGWD) component within the Met Office’s LFRic atmospheric model, using the PSyclone code-generation framework. The work focused on applying and evaluating advanced performance transformations to the Fortran SGWD implementation in a codebase that already employs distributed-memory parallelism via MPI, requiring careful design and validation of hybrid configurations (MPI+OpenMP on CPUs, and exploratory MPI+OpenMP target offloading / MPI+OpenACC approaches for GPUs).
 
-Working within a bespoke optimisation branch, I developed, tested, and refined PSyclone transformation scripts to target compute-intensive loops, using profiling data to identify performance-critical regions. On the CPU side, optimisations included the insertion of fine-grained OpenMP directives, loop collapsing, and parallel region clustering, with performance evaluated across a range of MPI-thread configurations. In parallel, GPU offloading strategies were explored to assess their suitability for future hardware acceleration pathways.
+Working within a dedicated optimisation branch, I designed, implemented, and validated PSyclone transformation scripts to target compute-intensive regions, guided by detailed profiling and kernel-level analysis. CPU-focused optimisations included selective insertion of fine-grained OpenMP directives, evaluation of loop-collapsing strategies, and restructuring of parallel regions to minimise thread management overhead while preserving correctness under MPI domain decomposition. Performance was assessed across a wide range of MPI configurations. In parallel, I explored GPU offloading strategies to evaluate their feasibility and limitations for SGWD within hybrid MPI+accelerator execution modes.
 
-The workflow I implemented enabled high-throughput experimentation across platforms such as Microsoft Azure (Milan CPUs and NVIDIA GPUs) and ARCHER2 (Rome CPUs), supported by automated job generation, analysis pipelines, and verification tooling. A key innovation was a hybrid MPI/OpenMP benchmarking matrix that revealed optimal core utilisation strategies under constrained-node conditions, highlighting the importance of balanced sub-domain sizes, communication cost trade-offs, and thread management overhead.
+I developed a reproducible, high-throughput benchmarking workflow supporting experimentation across multiple HPC platforms, including Microsoft Azure (Milan CPUs and NVIDIA GPUs) and ARCHER2 (Rome CPUs). This workflow integrated automated job generation, performance analysis pipelines, and numerical verification tooling. A key outcome was the construction of a hybrid MPI/OpenMP benchmarking matrix, which exposed optimal core-utilisation strategies under fixed-node constraints and quantified the trade-offs between sub-domain granularity, MPI communication overheads, and OpenMP thread management costs.
 
-This work delivered a validated set of performance improvements for the SGWD kernel, alongside robust guidance for hybrid and offloaded configurations in operational LFRic runs. The pipeline and methodology developed are now being extended to other physics components in LFRic, contributing to a broader drive towards performance-portable atmospheric modelling.
+This work delivered a validated set of performance improvements for the SGWD kernel, together with practical guidance on effective hybrid parallel configurations for operational LFRic runs. Importantly, the work also fed directly into PSyclone development, resulting in new or enhanced transformation capabilities applicable to other physics kernels. The optimisation pipeline and methodology are now being reused across additional LFRic physics components, supporting a broader programme of performance portability and sustainable numerical weather prediction model development.
 
 ### GPU Accelerated openFOAM (gpuFOAM)
 
 ![openFOAM Tutorial Test Case Visualisation](_static/images/openfoam.png)
 
-As part of the gpuFOAM project, I am responsible for benchmarking C++ code that leverages GPUs via stdpar on a range of HPC platforms (e.g. Isambard-AI) across multiple GPU architectures (e.g. GH200, MI300A).
+ As part of the gpuFOAM project, I support benchmarking and portability work for a C++ codebase that leverages GPUs via standard parallelism (stdpar) across a range of HPC platforms. My contribution focuses on taking the code from system to system, establishing reliable build and benchmarking workflows, and resolving platform-specific compilation, linking, and runtime issues across heterogeneous hardware and software environments, including systems such as Isambard-AI and multiple GPU architectures (e.g. NVIDIA GH200 and AMD MI300A).
+
+A major element of this work involves identifying and documenting issues that arise from differences in toolchains, linkers, runtime environments, and platform configuration. In practice, this has meant using Spack extensively to create reproducible environments and to manage compiler and dependency variations across sites, while developing a detailed understanding of how architectural differences impact both build feasibility and performance characteristics.
+
+This activity has also resulted in contributions back to platform and vendor teams when issues are traced to compiler or toolchain behaviour rather than project code. One example is an issue observed with NVHPC 24.11 on Grace (AArch64), where the device-link helper (pgacclnk) compiles its internal link stub with small PIC (-fpic) during device link. On AArch64 this can lead to a small GOT and, for large shared libraries such as libOpenFOAM.so, trigger a GOT overflow and final link failure. I documented the behaviour, captured supporting trace evidence showing the injected -fpic flag, and provided a minimal reproducer to assist investigation. Colleagues have reported that alternative SDK configurations using -fPIC internally can avoid the failure, suggesting the outcome is sensitive to NVHPC’s internal defaults or installation-time configuration rather than project build settings.
 
 ## Software
 
 ### Environmental Insights Python Package
 
 ![Environmental Insights](_static/images/ei.png)
+
+[Environmental Insights Python Package GitHub Homepage](https://github.com/liamjberrisford/Environmental-Insights)
 
 The package, designed for simplicity and inclusivity, enables users from diverse backgrounds, including academic, governmental, and non-governmental sectors, to retrieve historical air pollution data and utilize machine learning models for forecasting future conditions. It offers dynamic visualizations and analytical tools to enhance user engagement and comprehension of air pollution trends and implications. Environmental Insights aims to lower the barriers to air pollution data access, promoting informed decision-making and encouraging public advocacy for air quality improvements. By offering an open-source, user-friendly platform, the project contributes significantly to the democratization of environmental data, making it a valuable resource for stakeholders aiming to explore and mitigate the effects of air pollution across various sectors.
 
@@ -41,6 +47,8 @@ The Coding for Reproducible Research (CfRR) website is the public-facing home of
 ### Environmental Insights Interactive
 
 ![Environmental Insights Interactive](_static/images/ei_interactive.png)
+
+[Environmental Insights Interactive GitHub Homepage](https://github.com/liamjberrisford/Environmental-Insights-interactive)
 
 Environmental Insights Interactive is a web application that showcases the capabilities of the environmental-insights Python package by providing an interactive way to explore air pollution data and model outputs. It combines a Python/Flask backend, which runs the air quality models, manages data and generates PDFs, with a React-based frontend that displays maps, charts and other visualisations for users. Together, these components let users query locations, view estimated pollution levels and explore environmental insights through a modern web interface.
 
