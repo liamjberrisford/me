@@ -192,7 +192,16 @@ Details forthcoming — add co-authors, venue, and DOI here.`,
 - **Young Enterprise Ignite** (Assistant Managing Director & Operations Director) — student-run company generating over £5,000 revenue and delivering products to clients such as Virgin Group, JCB, and Wedgwood.`
 };
 
-const videoReady = new Set(["ml_happg", "ml_happe", "ngarch", "synth_happe", "wildfire", "life", "openfoam"]);
+const videoReady = new Set([
+  "ml_happg",
+  "ml_happe",
+  "ngarch",
+  "synth_happe",
+  "wildfire",
+  "life",
+  "openfoam",
+  "exoplanet_mesh"
+]);
 
 function escapeAttr(text = "") {
   return text

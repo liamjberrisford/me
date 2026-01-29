@@ -1,6 +1,6 @@
 # Liam Berrisford — Profile Site
 
-Static personal site showcasing projects, publications, teaching, and awards. Hosted on GitHub Pages at `https://liamjberrisford.github.io/me/`. Everything runs client-side with no build step.
+Static personal site showcasing projects, publications, teaching, and awards. Hosted on GitHub Pages at `https://liamjberrisford.github.io/me/`. Everything runs client-side with no build step. The images and videos used in the website are created via scripts that are contained in the [me_website_figures repo](https://github.com/liamjberrisford/me_website_figures).
 
 ## Quick start (local)
 - Serve the folder so Markdown files can be fetched: `python3 -m http.server 8000`

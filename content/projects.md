@@ -22,7 +22,14 @@ This work delivered a validated set of performance improvements for the SGWD ker
 
 A major element of this work involves identifying and documenting issues that arise from differences in toolchains, linkers, runtime environments, and platform configuration. In practice, this has meant using Spack extensively to create reproducible environments and to manage compiler and dependency variations across sites, while developing a detailed understanding of how architectural differences impact both build feasibility and performance characteristics.
 
+
 This activity has also resulted in contributions back to platform and vendor teams when issues are traced to compiler or toolchain behaviour rather than project code. One example is an issue observed with NVHPC 24.11 on Grace (AArch64), where the device-link helper (pgacclnk) compiles its internal link stub with small PIC (-fpic) during device link. On AArch64 this can lead to a small GOT and, for large shared libraries such as libOpenFOAM.so, trigger a GOT overflow and final link failure. I documented the behaviour, captured supporting trace evidence showing the injected -fpic flag, and provided a minimal reproducer to assist investigation. Colleagues have reported that alternative SDK configurations using -fPIC internally can avoid the failure, suggesting the outcome is sensitive to NVHPC’s internal defaults or installation-time configuration rather than project build settings.
+
+### Isambard-3 (AArch64) Enablement for Momentum Software: LFRic and Associated Codebases
+
+![LFRic Mesh Examples](_static/images/exoplanet_mesh.png)
+
+I am leading work to enable the Met Office’s LFRic atmospheric model and its coupled components, including JULES and UKCA, on Isambard-3, an Arm-based (AArch64) supercomputer, supporting the strategic transition towards future heterogeneous HPC platforms. This activity focuses on establishing robust, reproducible, and operationally relevant workflows using Spack-managed environments, FCM/Git-based builds, and Rose/Cylc suites, ensuring that the end-to-end LFRic software stack can be built, configured, and exercised consistently across architectures. Building on successful execution of core LFRic components and canned examples, the work extends to full science suites, where targeted source-level improvements have been applied and documented to strengthen portability under modern compiler toolchains and to support consistent numerical behaviour across platforms. This work contributes practical guidance on compiler, configuration, and workflow baselines for Arm-based systems, directly supporting the longer-term goals of operational readiness, sustainability, and performance-portable deployment of the Met Office’s next-generation modelling systems.
 
 ## Software
 
