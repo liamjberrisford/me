@@ -6,7 +6,7 @@
 
 ![LFRic optimisation](_static/images/ngarch.png)
 
-[Spectral Gravity Wave Drag (SGWD) Module – GitHub Merge (gw_ussp_mod.F90)](https://github.com/MetOffice/lfric_apps/blob/main/science/physics_schemes/source/gravity_wave_drag/gw_ussp_mod.F90)
+[Spectral Gravity Wave Drag (SGWD) Module – GitHub Merge (gw_ussp_mod.F90)](https://github.com/MetOffice/lfric_apps/commit/db82bec425dc45f757e5a575340225d7741e0d6a)
 
 As part of the NG-ARCH initiative, I led a comprehensive performance optimisation of the Spectral Gravity Wave Drag (SGWD) component within the Met Office’s LFRic atmospheric model, using the PSyclone code-generation framework. The work focused on applying and evaluating advanced performance transformations to the Fortran SGWD implementation in a codebase that already employs distributed-memory parallelism via MPI, requiring careful design and validation of hybrid configurations (MPI+OpenMP on CPUs, and exploratory MPI+OpenMP target offloading / MPI+OpenACC approaches for GPUs).
 
