@@ -11,4 +11,5 @@ On this website you will find the following pages:
 **[Projects](#projects):** Recent software, dashboards, modelling pipelines, and prototypes I’ve built or led.  
 **[Publications](#publications):** Datasets, papers, thesis work, and dissertations with visuals, demos, and external links.  
 **[Teaching](#teaching):** Courses, workshops, and training I’ve designed or delivered, plus supervision and mentoring highlights.  
+**[Grants](#grants):** Research and compute grant activity.  
 **[Recognition](#awards):** Recognition and honours from academic and professional practice.  

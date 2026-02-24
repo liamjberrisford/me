@@ -1,4 +1,4 @@
-const CACHE_NAME = "lb-site-v2";
+const CACHE_NAME = "lb-site-v3";
 const CORE_ASSETS = [
   "/",
   "/index.html",
@@ -9,6 +9,7 @@ const CORE_ASSETS = [
   "/content/projects.md",
   "/content/publications.md",
   "/content/teaching.md",
+  "/content/grants.md",
   "/content/awards.md"
 ];
 

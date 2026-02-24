@@ -4,6 +4,7 @@ const sections = [
   { id: "projects", label: "Projects", file: "content/projects.md" },
   { id: "publications", label: "Publications", file: "content/publications.md" },
   { id: "teaching", label: "Teaching", file: "content/teaching.md" },
+  { id: "grants", label: "Grants", file: "content/grants.md" },
   { id: "awards", label: "Recognition", file: "content/awards.md" }
 ];
 
@@ -47,6 +48,15 @@ You can think of my professional profile as spanning three main strands:
 
 - Curriculum redesign for COM1012 Data Science Group Project; co-led ECM2434 Group Software Engineering Project with sustainability focus.  
 - Provided bespoke teaching activities including imposter syndrome enrichment lectures and efficient programming short courses.`,
+  grants: `# Grants
+
+## Research
+
+- Add research grant entries here.
+
+## Compute
+
+- Add compute grant entries here.`,
   publications: `# Publications
 
 ## A framework for scalable ambient air pollution concentration estimation

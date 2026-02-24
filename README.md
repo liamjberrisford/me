@@ -1,6 +1,6 @@
 # Liam Berrisford — Profile Site
 
-Static personal site showcasing projects, publications, teaching, and awards. Hosted on GitHub Pages at `https://liamjberrisford.github.io/me/`. Everything runs client-side with no build step. The images and videos used in the website are created via scripts that are contained in the [me_website_figures repo](https://github.com/liamjberrisford/me_website_figures).
+Static personal site showcasing projects, publications, teaching, grants, and awards. Hosted on GitHub Pages at `https://liamjberrisford.github.io/me/`. Everything runs client-side with no build step. The images and videos used in the website are created via scripts that are contained in the [me_website_figures repo](https://github.com/liamjberrisford/me_website_figures).
 
 ## Quick start (local)
 - Serve the folder so Markdown files can be fetched: `python3 -m http.server 8000`
@@ -17,7 +17,7 @@ Static personal site showcasing projects, publications, teaching, and awards. Ho
 - `index.html` — shell HTML, navigation containers, and footer.
 - `app.js` — hash-based navigation, Markdown loading/parsing, sub-nav logic, media enhancement, and PWA registration.
 - `styles.css` — layout, typography, responsive rules, and content styling.
-- `content/` — editable Markdown per section (`about.md`, `projects.md`, `publications.md`, `teaching.md`, `awards.md`).
+- `content/` — editable Markdown per section (`about.md`, `projects.md`, `publications.md`, `teaching.md`, `grants.md`, `awards.md`).
 - `_static/images` / `_static/videos` — media assets referenced by the content.
 - `manifest.webmanifest` — PWA metadata (name, theme colors).
 - `sw.js` — caches core assets for offline/low-connectivity use.
