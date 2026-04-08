@@ -142,3 +142,13 @@ The simulation has the ability to swap out the structure being photographed whil
 
 
 
+
+## Posters
+
+### Operationalising Ambient Air Pollution Estimation
+
+<a class="poster-link" href="poster.html?pdf=_static/posters/Operationalising_Ambient_Air_Pollution_Estimation.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Operationalising Ambient Air Pollution Estimation poster PDF in a new tab"><span class="poster-preview" data-pdf="_static/posters/Operationalising_Ambient_Air_Pollution_Estimation.pdf"></span></a>
+
+### Isambard Summit Poster Enabling LFRic AArch64
+
+<a class="poster-link" href="poster.html?pdf=_static/posters/Isambard%20Summit%20Poster%20Enabling%20LFRic%20AArch64.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Isambard Summit Poster Enabling LFRic AArch64 PDF in a new tab"><span class="poster-preview" data-pdf="_static/posters/Isambard%20Summit%20Poster%20Enabling%20LFRic%20AArch64.pdf"></span></a>

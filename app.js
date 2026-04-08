@@ -394,7 +394,9 @@ async function loadSection(id) {
     const html = simpleMarkdownToHtml(md);
     contentEl.innerHTML = html;
     enhanceMedia();
+    initPosterPreviews();
     buildSubNav(section.id);
+    schedulePosterPreviewFit();
     setActiveNav(section.id);
     document.title = `Liam Berrisford | ${section.label}`;
   } catch (err) {
@@ -540,6 +542,7 @@ function showSubSection(id) {
     });
   });
   setActiveSubNav(id);
+  schedulePosterPreviewFit();
 }
 
 function enhanceMedia() {
@@ -662,6 +665,169 @@ function enhanceMedia() {
   });
 }
 
+let posterResizeRaf = null;
+let pdfJsLoadPromise = null;
+const posterDocCache = new Map();
+const posterPageState = new WeakMap();
+
+async function ensurePdfJs() {
+  if (window.pdfjsLib) return window.pdfjsLib;
+  if (pdfJsLoadPromise) return pdfJsLoadPromise;
+
+  pdfJsLoadPromise = new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+    script.onload = () => {
+      if (!window.pdfjsLib) {
+        reject(new Error("pdf.js did not initialize"));
+        return;
+      }
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+      resolve(window.pdfjsLib);
+    };
+    script.onerror = () => reject(new Error("Failed to load pdf.js"));
+    document.head.appendChild(script);
+  });
+
+  return pdfJsLoadPromise;
+}
+
+async function getPosterPage(pdfUrl) {
+  if (!posterDocCache.has(pdfUrl)) {
+    posterDocCache.set(
+      pdfUrl,
+      ensurePdfJs().then((pdfjsLib) => pdfjsLib.getDocument({ url: pdfUrl }).promise)
+    );
+  }
+
+  const pdfDoc = await posterDocCache.get(pdfUrl);
+  return pdfDoc.getPage(1);
+}
+
+function getPosterPreviewTarget(preview, aspect) {
+  const wrapper = preview.closest(".poster-link");
+  if (!wrapper) return null;
+
+  const wrapperWidth = wrapper.clientWidth || wrapper.getBoundingClientRect().width;
+  if (!wrapperWidth || !aspect) return null;
+
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const maxHeight = Math.max(220, Math.floor(viewportHeight * 0.82));
+  const maxByHeightWidth = maxHeight * aspect;
+  const targetWidth = Math.floor(Math.min(wrapperWidth, maxByHeightWidth));
+  const targetHeight = Math.floor(targetWidth / aspect);
+
+  if (!targetWidth || !targetHeight) return null;
+
+  return { width: targetWidth, height: targetHeight };
+}
+
+async function renderPosterPreview(preview) {
+  const pdfUrl = preview.dataset.pdf;
+  if (!pdfUrl) return;
+
+  let state = posterPageState.get(preview);
+  if (!state) {
+    state = {};
+    posterPageState.set(preview, state);
+  }
+
+  if (!state.page) {
+    try {
+      preview.classList.add("poster-preview-loading");
+      state.page = await getPosterPage(pdfUrl);
+      const baseViewport = state.page.getViewport({ scale: 1 });
+      state.aspect = baseViewport.width / baseViewport.height;
+    } catch (err) {
+      console.warn("Poster preview rendering failed", err);
+      preview.classList.remove("poster-preview-loading");
+      preview.classList.add("poster-preview-error");
+      preview.textContent = "Preview unavailable. Click to open poster.";
+      return;
+    }
+  }
+
+  const aspect = state.aspect || 1.414;
+  const target = getPosterPreviewTarget(preview, aspect);
+  if (!target) return;
+
+  if (!state.canvas) {
+    state.canvas = document.createElement("canvas");
+    state.canvas.className = "poster-canvas";
+    preview.replaceChildren(state.canvas);
+  }
+
+  if (
+    state.lastRenderedWidth === target.width &&
+    state.lastRenderedHeight === target.height
+  ) {
+    preview.classList.remove("poster-preview-loading");
+    return;
+  }
+
+  const dpr = window.devicePixelRatio || 1;
+  const viewport = state.page.getViewport({ scale: 1 });
+  const renderScale = (target.width * dpr) / viewport.width;
+  const renderViewport = state.page.getViewport({ scale: renderScale });
+
+  state.canvas.width = Math.floor(renderViewport.width);
+  state.canvas.height = Math.floor(renderViewport.height);
+  state.canvas.style.width = `${target.width}px`;
+  state.canvas.style.height = `${target.height}px`;
+
+  if (state.renderTask) {
+    try {
+      state.renderTask.cancel();
+    } catch (_err) {
+      // Ignore cancelled render errors when resizing rapidly.
+    }
+  }
+
+  state.renderTask = state.page.render({
+    canvasContext: state.canvas.getContext("2d", { alpha: false }),
+    viewport: renderViewport
+  });
+
+  try {
+    await state.renderTask.promise;
+    state.lastRenderedWidth = target.width;
+    state.lastRenderedHeight = target.height;
+    preview.classList.remove("poster-preview-loading");
+  } catch (err) {
+    if (err?.name !== "RenderingCancelledException") {
+      console.warn("Poster preview draw failed", err);
+      preview.classList.remove("poster-preview-loading");
+      preview.classList.add("poster-preview-error");
+      preview.textContent = "Preview unavailable. Click to open poster.";
+    }
+  }
+}
+
+function initPosterPreviews() {
+  const previews = Array.from(document.querySelectorAll("#content-inner .poster-preview[data-pdf]"));
+  if (!previews.length) return;
+  previews.forEach((preview) => {
+    renderPosterPreview(preview);
+  });
+}
+
+function fitPosterPreviews() {
+  const previews = document.querySelectorAll("#content-inner .poster-preview[data-pdf]");
+  if (!previews.length) return;
+  previews.forEach((preview) => {
+    renderPosterPreview(preview);
+  });
+}
+
+function schedulePosterPreviewFit() {
+  if (posterResizeRaf !== null) return;
+  posterResizeRaf = window.requestAnimationFrame(() => {
+    posterResizeRaf = null;
+    fitPosterPreviews();
+  });
+}
+
 async function getMarkdownForSection(section) {
   if (canFetchMarkdown()) {
     try {
@@ -705,3 +871,5 @@ window.addEventListener("hashchange", () => {
   const id = getInitialSectionId();
   loadSection(id);
 });
+
+window.addEventListener("resize", schedulePosterPreviewFit);

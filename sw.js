@@ -1,9 +1,10 @@
-const CACHE_NAME = "lb-site-v3";
+const CACHE_NAME = "lb-site-v4";
 const CORE_ASSETS = [
   "/",
   "/index.html",
   "/styles.css",
   "/app.js",
+  "/poster.html",
   "/manifest.webmanifest",
   "/content/about.md",
   "/content/projects.md",

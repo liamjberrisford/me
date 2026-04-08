@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Poster Viewer</title>
+  <style>
+    :root {
+      --bg: #f3f5f8;
+      --text: #0f172a;
+      --muted: #4b5563;
+      --border: rgba(15, 23, 42, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .viewer {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      padding: 0.75rem 1rem;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .title {
+      font-size: 0.95rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .open-raw {
+      color: #0a66c2;
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .open-raw:hover { text-decoration: underline; }
+
+    .stage {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+      padding: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="viewer">
+    <div class="toolbar">
+      <div id="title" class="title">Loading poster…</div>
+      <a id="open-raw" class="open-raw" href="#" target="_blank" rel="noopener noreferrer">Open raw PDF</a>
+    </div>
+    <div id="stage" class="stage">
+      <div id="status" class="status">Rendering poster…</div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const rawPdf = params.get("pdf") || "";
+    const pdfUrl = (() => {
+      try {
+        return new URL(rawPdf, window.location.href).toString();
+      } catch (_err) {
+        return "";
+      }
+    })();
+
+    const titleEl = document.getElementById("title");
+    const openRawEl = document.getElementById("open-raw");
+    const stageEl = document.getElementById("stage");
+    const statusEl = document.getElementById("status");
+
+    if (!pdfUrl || !/\.pdf($|\?)/i.test(pdfUrl)) {
+      titleEl.textContent = "Invalid poster URL";
+      openRawEl.removeAttribute("href");
+      openRawEl.style.pointerEvents = "none";
+      openRawEl.style.opacity = "0.45";
+      statusEl.textContent = "No valid PDF was provided.";
+      throw new Error("Invalid PDF URL");
+    }
+
+    const fileName = decodeURIComponent((rawPdf.split("/").pop() || "Poster").replace(/\.pdf(\?.*)?$/i, ""));
+    titleEl.textContent = fileName;
+    document.title = fileName;
+    openRawEl.href = pdfUrl;
+
+    let page = null;
+    let canvas = null;
+    let renderTask = null;
+    let resizeRaf = null;
+
+    function targetSize(aspect) {
+      const stageRect = stageEl.getBoundingClientRect();
+      const maxWidth = Math.max(1, Math.floor(stageRect.width));
+      const maxHeight = Math.max(1, Math.floor(stageRect.height));
+
+      const byWidthHeight = maxWidth / aspect;
+      if (byWidthHeight <= maxHeight) {
+        return { width: maxWidth, height: Math.floor(byWidthHeight) };
+      }
+      return { width: Math.floor(maxHeight * aspect), height: maxHeight };
+    }
+
+    async function render() {
+      if (!page) return;
+
+      const base = page.getViewport({ scale: 1 });
+      const aspect = base.width / base.height;
+      const size = targetSize(aspect);
+      const dpr = window.devicePixelRatio || 1;
+      const scale = (size.width * dpr) / base.width;
+      const viewport = page.getViewport({ scale });
+
+      if (!canvas) {
+        canvas = document.createElement("canvas");
+        stageEl.replaceChildren(canvas);
+      }
+
+      canvas.width = Math.floor(viewport.width);
+      canvas.height = Math.floor(viewport.height);
+      canvas.style.width = `${size.width}px`;
+      canvas.style.height = `${size.height}px`;
+
+      if (renderTask) {
+        try { renderTask.cancel(); } catch (_err) {}
+      }
+
+      renderTask = page.render({
+        canvasContext: canvas.getContext("2d", { alpha: false }),
+        viewport
+      });
+
+      try {
+        await renderTask.promise;
+      } catch (err) {
+        if (err?.name !== "RenderingCancelledException") {
+          stageEl.replaceChildren(statusEl);
+          statusEl.textContent = "Unable to render this PDF.";
+        }
+      }
+    }
+
+    function scheduleRender() {
+      if (resizeRaf !== null) return;
+      resizeRaf = window.requestAnimationFrame(() => {
+        resizeRaf = null;
+        render();
+      });
+    }
+
+    (async () => {
+      try {
+        const pdfJsScript = document.createElement("script");
+        pdfJsScript.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+        await new Promise((resolve, reject) => {
+          pdfJsScript.onload = resolve;
+          pdfJsScript.onerror = reject;
+          document.head.appendChild(pdfJsScript);
+        });
+
+        if (!window.pdfjsLib) {
+          throw new Error("pdf.js not available");
+        }
+
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+          "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+        const doc = await window.pdfjsLib.getDocument({ url: pdfUrl }).promise;
+        page = await doc.getPage(1);
+
+        await render();
+        window.addEventListener("resize", scheduleRender);
+      } catch (err) {
+        stageEl.replaceChildren(statusEl);
+        statusEl.textContent = "Unable to load this poster. Use 'Open raw PDF'.";
+      }
+    })();
+  </script>
+</body>
+</html>

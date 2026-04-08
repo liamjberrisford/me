@@ -425,3 +425,45 @@ b {
     font-size: 1.3rem;
   }
 }
+
+.poster-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0.8rem auto 1.6rem;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  text-decoration: none;
+}
+
+.poster-preview {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-height: 220px;
+  border: 0;
+  background: transparent;
+}
+
+.poster-preview-loading::before {
+  content: "Rendering poster preview...";
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.poster-canvas {
+  display: block;
+  border: 0;
+  box-shadow: none;
+  background: #ffffff;
+}
+
+.poster-preview-error {
+  min-height: 140px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
