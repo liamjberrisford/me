@@ -1,0 +1,221 @@
+[+]  lfric-apps-isambard@0.1.0 build_system=bundle arch=linux-sles15-neoverse_v2
+[+]      ^blitz@1.0.2~ipo build_system=cmake build_type=Release generator=make arch=linux-sles15-neoverse_v2 %cxx,fortran=gcc@12.3.0
+[+]          ^cmake@3.31.9~doc+ncurses+ownlibs~qtgui build_system=generic build_type=Release arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^curl@8.17.0~gssapi~ldap~libidn2~librtmp~libssh~libssh2+nghttp2 build_system=autotools libs:=shared,static tls:=openssl arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]                  ^nghttp2@1.67.1 build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]          ^compiler-wrapper@1.0 build_system=generic arch=linux-sles15-neoverse_v2
+[e]          ^gcc@12.3.0~binutils+bootstrap~graphite~mold~nvptx~piclibs~profiled~strip build_system=autotools build_type=RelWithDebInfo languages:='c,c++,fortran' patches:=8b76fe5,e4765da arch=linux-sles15-neoverse_v2
+[+]          ^gcc-runtime@12.3.0 build_system=generic arch=linux-sles15-neoverse_v2
+[e]          ^glibc@2.31 build_system=autotools arch=linux-sles15-neoverse_v2
+[+]          ^papi@5.7.0~cuda~debug+example~infiniband~lmsensors~nvml~powercap~rapl~rocm~rocm_smi~sde+shared~static_tools build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx,fortran=gcc@12.3.0
+[+]      ^cylc-flow@8.6.2 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^graphviz@14.0.1~doc~expat~ghostscript~gtkplus~gts~java~libgd~pangocairo~poppler~qt~quartz~x build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^bison@3.8.2~color build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^flex@2.6.3+lex~nls build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^sed@4.9 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^py-flit-core@3.12.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-graphene@3.4.3 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-graphql-relay@3.2.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-python-dateutil@2.9.0.post0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-six@1.16.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-typing-extensions@4.14.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-graphql-core@3.2.7 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-poetry-core@2.3.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-metomi-isodatetime@3.1.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-packaging@25.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-pip@25.1.1 build_system=generic arch=linux-sles15-neoverse_v2
+[+]          ^py-protobuf@6.33.4 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-psutil@5.9.8 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-pyzmq@27.1.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^libzmq@4.3.5~docs~drafts+libbsd+libsodium~libunwind build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]                  ^libsodium@1.0.20 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]              ^py-scikit-build-core@0.11.5+pyproject build_system=python_pip arch=linux-sles15-neoverse_v2 %c,cxx,fortran=gcc@12.3.0
+[+]          ^py-setuptools-scm@7.1.0+toml build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^git@2.52.0+man+nls+perl+subtree~tcltk build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]                  ^libidn2@2.3.7 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]                      ^libunistring@1.2 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]                  ^openssh@9.9p1+gssapi build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]                      ^krb5@1.21.3+shared build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]                      ^libedit@3.1-20240808 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]                  ^pcre2@10.44~jit+multibyte+pic build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^py-urwid@3.0.3 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-wheel@0.45.1 build_system=generic arch=linux-sles15-neoverse_v2
+[+]          ^python-venv@1.0 build_system=generic arch=linux-sles15-neoverse_v2
+[+]      ^cylc-rose@1.7.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]      ^cylc-uiserver@1.8.3 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-jupyter-server@2.17.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-anyio@4.9.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-sniffio@1.3.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-argon2-cffi@21.3.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-argon2-cffi-bindings@21.2.0 build_system=python_pip arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]                      ^py-cffi@2.0.0 build_system=python_pip arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]                          ^py-pycparser@2.23 build_system=python_pip arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]              ^py-hatch-jupyter-builder@0.9.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^npm@11.2.0 build_system=generic arch=linux-sles15-neoverse_v2 %cxx=gcc@12.3.0
+[+]                      ^node-js@24.2.0~debug~doc~icu4c+openssl+zlib build_system=generic arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^py-jupyter-client@8.6.3 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-jupyter-core@5.8.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-platformdirs@4.4.0~wheel build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-jupyter-events@0.12.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-python-json-logger@3.3.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-jupyter-server-terminals@0.5.3 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-nbconvert@7.16.6+serve build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-beautifulsoup4@4.13.4~html5lib~lxml build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                      ^py-soupsieve@2.8 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-bleach@6.2.0+css build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                      ^py-tinycss2@1.4.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                      ^py-webencodings@0.5.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-defusedxml@0.7.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-jupyterlab-pygments@0.2.2 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-mistune@3.1.4 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-nbclient@0.10.2 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-pandocfilters@1.5.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-pygments@2.19.2 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-nbformat@5.10.4 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-fastjsonschema@2.21.2 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-hatch-nodejs-version@0.3.2 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-overrides@7.7.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-prometheus-client@0.22.1~twisted build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-send2trash@1.8.3 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-terminado@0.18.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-ptyprocess@0.7.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-websocket-client@1.8.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-requests@2.32.3 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-certifi@2025.1.31 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-charset-normalizer@3.3.2 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-idna@3.7 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-urllib3@2.2.3 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-tornado@6.5.2 build_system=python_pip arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^py-traitlets@5.14.3 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]      ^foxml@6f60cf1~ipo build_system=cmake build_type=Release commit=6f60cf178d0776b21406303e91f1e6b42ff0f204 generator=make arch=linux-sles15-neoverse_v2
+[+]      ^gmake@4.4.1~guile build_system=generic arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]      ^hdf5@1.14.6~cxx+fortran+hl~ipo~java~map+mpi+shared~subfiling~szip~threadsafe+tools api=default build_system=cmake build_type=Release generator=make arch=linux-sles15-neoverse_v2 %c,fortran=gcc@12.3.0
+[+]          ^zlib-ng@2.2.4+compat+new_strategies+opt+pic+shared build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]      ^metomi-rose@2.5.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-aiofiles@0.7.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-keyring@24.3.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-jaraco-classes@3.4.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-more-itertools@10.8.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-jeepney@0.9.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-secretstorage@3.3.3 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-cryptography@46.0.3 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-ldap3@2.9.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-pyasn1@0.6.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-pyasn1-modules@0.4.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-sqlalchemy@1.4.54 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-greenlet@3.1.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]      ^mpich@4.3.2~argobots~cuda+fortran+hwloc+hydra~level_zero+libxml2+pci~rocm+romio~slurm~vci~verbs+wrapperrpath~xpmem build_system=autotools datatype-engine=auto device=ch4 netmod=ofi pmi=default arch=linux-sles15-neoverse_v2 %c,cxx,fortran=gcc@12.3.0
+[+]          ^findutils@4.10.0 build_system=autotools patches:=440b954 arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^gnuconfig@2024-07-27 build_system=generic arch=linux-sles15-neoverse_v2
+[+]          ^hwloc@2.12.2~cairo~cuda~gl~level_zero~libudev+libxml2~nvml~opencl+pci~rocm build_system=autotools libs:=shared,static arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]          ^libfabric@2.4.0~asan~cuda~debug~kdreg~level_zero~lsan~rocm~tsan~ubsan~uring build_system=autotools fabrics:=sockets,tcp,udp arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^libpciaccess@0.17 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]              ^util-macros@1.20.1 build_system=autotools arch=linux-sles15-neoverse_v2
+[+]          ^libxml2@2.13.5~http+pic~python+shared build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]              ^libiconv@1.18 build_system=autotools libs:=shared,static arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^yaksa@0.4~cuda~level_zero~rocm build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]      ^netcdf-c@4.9.3+blosc~byterange~dap~fsync~hdf4~jna~logging+mpi~nczarr_zip+optimize~parallel-netcdf+pic+shared+szip+zstd build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^bzip2@1.0.8~debug~pic+shared build_system=generic arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]              ^diffutils@3.12 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^c-blosc@1.21.6+avx2~ipo build_system=cmake build_type=Release generator=make arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^lz4@1.10.0+pic build_system=makefile libs:=shared,static arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^snappy@1.2.1~ipo+pic+shared build_system=cmake build_type=Release generator=make arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]          ^libaec@1.1.4~ipo+shared build_system=cmake build_type=Release generator=make arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]          ^zstd@1.5.7+programs build_system=makefile compression:=none libs:=shared,static arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]      ^netcdf-fortran@4.6.2~doc+pic+shared build_system=autotools arch=linux-sles15-neoverse_v2 %c,fortran=gcc@12.3.0
+[+]      ^pfunit@4.15.0~docs~esmf~fhamcrest~ipo+mpi~mpi_f08~openmp build_system=cmake build_type=Release generator=make max_array_rank=5 arch=linux-sles15-neoverse_v2 %c,fortran=gcc@12.3.0
+[+]          ^fargparse@1.10.0~ipo build_system=cmake build_type=Release generator=make arch=linux-sles15-neoverse_v2 %fortran=gcc@12.3.0
+[+]              ^gftl@1.16.0~ipo build_system=cmake build_type=Release generator=make arch=linux-sles15-neoverse_v2 %fortran=gcc@12.3.0
+[+]              ^gftl-shared@1.11.0~ipo build_system=cmake build_type=Release generator=make arch=linux-sles15-neoverse_v2 %fortran=gcc@12.3.0
+[+]          ^m4@1.4.20+sigsegv build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^libsigsegv@2.14 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]      ^pkgconf@2.5.1 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]      ^py-ansimarkup@2.1.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-hatchling@1.27.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-pathspec@0.12.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-pluggy@1.5.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-trove-classifiers@2025.9.11.17 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-calver@2025.4.17 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]      ^py-colorama@0.4.6 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]      ^py-fparser@0.2.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-importlib-metadata@8.7.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-zipp@3.23.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-coherent-licensed@0.5.2 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-setuptools-scm-git-archive@1.4.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]      ^py-jinja2@3.0.3~i18n build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-markupsafe@3.0.2 build_system=python_pip arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]      ^py-psyclone@3.2.2 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-configparser@5.2.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-graphviz@0.20.3~dev~docs build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-jsonschema@4.25.1+format-nongpl build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-attrs@25.3.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-fqdn@1.5.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-hatch-fancy-pypi-readme@25.1.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-hatch-vcs@0.4.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-isoduration@20.11.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-arrow@1.2.3 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-jsonpointer@3.0.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-jsonschema-specifications@2025.9.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-referencing@0.36.2 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-rfc3339-validator@0.1.4 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-rfc3986-validator@0.1.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-pytest-runner@6.0.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-rpds-py@0.27.1 build_system=python_pip arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]                  ^py-maturin@1.10.2 build_system=python_pip arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]                      ^py-setuptools-rust@1.12.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                          ^py-semantic-version@2.10.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^rust@1.92.0~dev~docs+src build_system=generic arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]                      ^libgit2@1.9.1~curl~ipo+mmap+ssh build_system=cmake build_type=Release generator=make https=system arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]                          ^pcre@8.45~jit+multibyte+pic+shared+static+utf build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]                      ^libssh2@1.11.1+shared build_system=autotools crypto=openssl arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]                      ^ninja@1.13.0+re2c build_system=generic arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]                          ^re2c@3.1 build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]                      ^rust-bootstrap@1.92.0 build_system=generic arch=linux-sles15-neoverse_v2
+[+]                          ^patchelf@0.17.2 build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^py-uri-template@1.2.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-webcolors@24.11.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]                  ^py-pdm-backend@2.4.5 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-pyparsing@3.2.5 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-sympy@1.14.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^py-mpmath@1.3.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^py-termcolor@3.1.0 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]      ^py-pyyaml@6.0.3+libyaml build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]          ^libyaml@0.2.5 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^py-cython@3.2.3 build_system=python_pip arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]      ^py-setuptools@79.0.1 build_system=generic arch=linux-sles15-neoverse_v2
+[+]      ^python@3.12.12+bz2+crypt+ctypes+dbm~debug+libxml2+lzma~optimizations+pic+pyexpat+pythoncmd+readline+shared+sqlite3+ssl~tkinter+uuid+zlib build_system=generic arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]          ^expat@2.7.3+libbsd build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^libbsd@0.12.2 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]                  ^libmd@1.1.0 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^gdbm@1.25 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^gettext@0.23.1+bzip2+curses+git~libunistring+libxml2+pic+shared+tar+xz build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^tar@1.35 build_system=autotools zip=pigz arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]                  ^pigz@2.8 build_system=makefile arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^libffi@3.5.2 build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]          ^libxcrypt@4.4.38~obsolete_api build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^ncurses@6.5-20250705~symlinks+termlib abi=none build_system=autotools patches:=7a351bc arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]          ^openssl@3.6.0~docs+shared build_system=generic certs=mozilla arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^ca-certificates-mozilla@2025-08-12 build_system=generic arch=linux-sles15-neoverse_v2
+[+]          ^readline@8.3 build_system=autotools patches:=21f0a03 arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^sqlite@3.50.4+column_metadata+fts+rtree build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^util-linux-uuid@2.41 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^xz@5.6.3~pic build_system=autotools libs:=shared,static arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]      ^rose-picker@2.0.0 build_system=generic commit=9f0e83f6ca3909414de8834c07271978e2dc67f3 arch=linux-sles15-neoverse_v2
+[+]      ^shumlib@13.0~openmp build_system=makefile arch=linux-sles15-neoverse_v2
+[+]      ^xios@2252~oasis build_system=generic mode=dev patches:=0eed40f arch=linux-sles15-neoverse_v2 %c,fortran=gcc@12.3.0
+[+]          ^boost@1.89.0+atomic~charconv+chrono~clanglibcpp~cobalt~container~context~contract~conversion~coroutine+date_time~debug+exception~fiber+filesystem+graph~graph_parallel+icu+iostreams~json+locale+log+math~mpi~mqtt5+multithreaded~nowide~numpy~pic+program_options~python+random+regex+serialization+shared~signals2~singlethreaded~stacktrace+system~taggedlayout+test+thread+timer~type_erasure~url~versionedlayout+wave build_system=generic cxxstd=11 patches:=a440f96 visibility=hidden arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^icu4c@74.2 build_system=autotools cxxstd=11 arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]          ^perl@5.42.0+cpanm+opcode+open+shared+threads build_system=generic arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]              ^berkeley-db@18.1.40+cxx~docs+stl build_system=autotools patches:=26090f4,b231fcc arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]          ^perl-uri@5.08 build_system=perl arch=linux-sles15-neoverse_v2
+[+]              ^perl-test-needs@0.002010 build_system=perl arch=linux-sles15-neoverse_v2
+[+]          ^subversion@1.14.2+apxs+nls~perl+serf build_system=autotools arch=linux-sles15-neoverse_v2 %c,cxx=gcc@12.3.0
+[+]              ^apr@1.7.5 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]              ^apr-util@1.6.3+crypto~gdbm~odbc~pgsql~sqlite build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]              ^serf@1.3.10~debug build_system=scons patches:=0ac7e33 arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]                  ^scons@4.9.1 build_system=python_pip arch=linux-sles15-neoverse_v2
+[+]              ^utf8proc@2.10.0~ipo~shared build_system=cmake build_type=Release generator=make arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]      ^yaxt@0.11.3+idxlong+notests build_system=autotools arch=linux-sles15-neoverse_v2
+[+]          ^autoconf@2.72 build_system=autotools arch=linux-sles15-neoverse_v2
+[+]          ^automake@1.16.5 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0
+[+]          ^libtool@2.4.7 build_system=autotools arch=linux-sles15-neoverse_v2 %c=gcc@12.3.0

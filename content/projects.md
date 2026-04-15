@@ -29,7 +29,7 @@ This activity has also resulted in contributions back to platform and vendor tea
 
 ### Isambard-3 (AArch64) Enablement for Momentum Software: LFRic and Associated Codebases
 
-![LFRic Mesh Examples](_static/images/exoplanet_mesh.png)
+![Earth-like exoplanet render for the Isambard-3 project](_static/images/exoplanet_mesh.png)
 
 I am leading work to enable the Met Office’s LFRic atmospheric model and its coupled components, including JULES and UKCA, on Isambard-3, an Arm-based (AArch64) supercomputer, supporting the strategic transition towards future heterogeneous HPC platforms. This activity focuses on establishing robust, reproducible, and operationally relevant workflows using Spack-managed environments, FCM/Git-based builds, and Rose/Cylc suites, ensuring that the end-to-end LFRic software stack can be built, configured, and exercised consistently across architectures. Building on successful execution of core LFRic components and canned examples, the work extends to full science suites, where targeted source-level improvements have been applied and documented to strengthen portability under modern compiler toolchains and to support consistent numerical behaviour across platforms. This work contributes practical guidance on compiler, configuration, and workflow baselines for Arm-based systems, directly supporting the longer-term goals of operational readiness, sustainability, and performance-portable deployment of the Met Office’s next-generation modelling systems.
 

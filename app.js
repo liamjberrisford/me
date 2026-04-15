@@ -212,6 +212,12 @@ const videoReady = new Set([
   "openfoam",
   "exoplanet_mesh"
 ]);
+const EXOPLANET_ASSET = "exoplanet_mesh";
+const EXOPLANET_MEDIA_VERSION = "20260415-no-sun-higher-res";
+const EXOPLANET_SPEC_PATH = "_static/text/spack_env_spec.txt";
+const EXOPLANET_FUNNY_CAPTION =
+  "Tiny disclaimer: this is the glamorous Hollywood version of the project, an idealised, AI-generated fictional exoplanet, rather than the real scientific visualisation. To reveal what the project actually looks like for me as a software engineer, click the image five times!";
+let exoplanetSpecPromise = null;
 
 function escapeAttr(text = "") {
   return text
@@ -222,6 +228,13 @@ function escapeAttr(text = "") {
     .replace(/'/g, "&#39;");
 }
 
+function escapeHtml(text = "") {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
 function isLocalStaticPng(src = "") {
   return /^\/?_static\/images\/.+\.png$/i.test(src);
 }
@@ -230,10 +243,22 @@ function toWebpPath(src = "") {
   return src.replace(/\.png$/i, ".webp");
 }
 
-function buildResponsiveImage({ alt = "", src = "", extraAttrs = "" }) {
+function versionedAssetPath(src = "", version = "") {
+  if (!version || !src) return src;
+  const [pathPart, hashPart] = src.split("#");
+  const separator = pathPart.includes("?") ? "&" : "?";
+  return `${pathPart}${separator}v=${version}${hashPart ? `#${hashPart}` : ""}`;
+}
+
+function mediaVersionForAsset(baseName = "") {
+  return baseName === EXOPLANET_ASSET ? EXOPLANET_MEDIA_VERSION : "";
+}
+
+function buildResponsiveImage({ alt = "", src = "", extraAttrs = "", baseName = "", version = "" }) {
+  const finalSrc = versionedAssetPath(src, version);
   const escapedAlt = escapeAttr(alt);
   const baseAttributes = [
-    `src="${src}"`,
+    `src="${finalSrc}"`,
     `alt="${escapedAlt}"`,
     'loading="lazy"',
     'decoding="async"',
@@ -247,7 +272,7 @@ function buildResponsiveImage({ alt = "", src = "", extraAttrs = "" }) {
 
   const attributes = baseAttributes.join(" ");
   const markup = isLocalStaticPng(src)
-    ? `<picture><source srcset="${toWebpPath(src)}" type="image/webp" /><img ${attributes} /></picture>`
+    ? `<picture><source srcset="${versionedAssetPath(toWebpPath(src), version)}" type="image/webp" /><img ${attributes} /></picture>`
     : `<img ${attributes} />`;
 
   return markup;
@@ -263,16 +288,19 @@ function formatInline(text) {
         const filename = path.split("/").pop() || "";
         const baseName = filename.replace(/\.[^.]+$/, "");
         const normalizedSrc = rawSrc.startsWith("/") ? rawSrc.slice(1) : rawSrc;
+        const mediaVersion = mediaVersionForAsset(baseName);
 
         if (videoReady.has(baseName)) {
-          const videoSrc = `_static/videos/${baseName}.mp4`;
-          const videoH265Src = `_static/videos/${baseName}-h265.mp4`;
-          const poster = isLocalStaticPng(normalizedSrc) ? toWebpPath(normalizedSrc) : normalizedSrc;
-          const extraAttrs = `data-video="${videoSrc}" data-video-h265="${videoH265Src}" data-poster="${poster}"`;
-          return buildResponsiveImage({ alt, src: normalizedSrc, extraAttrs });
+          const videoSrc = versionedAssetPath(`_static/videos/${baseName}.mp4`, mediaVersion);
+          const videoH265Src = versionedAssetPath(`_static/videos/${baseName}-h265.mp4`, mediaVersion);
+          const poster = isLocalStaticPng(normalizedSrc)
+            ? versionedAssetPath(toWebpPath(normalizedSrc), mediaVersion)
+            : versionedAssetPath(normalizedSrc, mediaVersion);
+          const extraAttrs = `data-video="${videoSrc}" data-video-h265="${videoH265Src}" data-poster="${poster}" data-asset="${baseName}"`;
+          return buildResponsiveImage({ alt, src: normalizedSrc, extraAttrs, baseName, version: mediaVersion });
         }
 
-        return buildResponsiveImage({ alt, src: normalizedSrc });
+        return buildResponsiveImage({ alt, src: normalizedSrc, baseName, version: mediaVersion });
       }
     )
     .replace(
@@ -547,7 +575,10 @@ function showSubSection(id) {
 
 function enhanceMedia() {
   const mediaImgs = document.querySelectorAll('#content-inner img[data-video]');
-  if (!mediaImgs.length) return;
+  if (!mediaImgs.length) {
+    initExoplanetSpecEasterEgg();
+    return;
+  }
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const supportsIntersectionObserver = typeof IntersectionObserver !== "undefined";
@@ -600,6 +631,9 @@ function enhanceMedia() {
 
     const video = document.createElement("video");
     video.className = "content-video";
+    if (img.dataset.asset) {
+      video.dataset.asset = img.dataset.asset;
+    }
     video.setAttribute("playsinline", "");
     video.muted = true;
     video.preload = "none";
@@ -661,6 +695,132 @@ function enhanceMedia() {
     } else {
       loadSources(video);
       video.addEventListener("canplay", () => tryAutoplay(video), { once: true });
+    }
+  });
+
+  initExoplanetSpecEasterEgg();
+}
+
+function resumeInlineVideo(videoEl) {
+  if (!videoEl || videoEl.tagName !== "VIDEO") return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const playPromise = videoEl.play();
+  if (playPromise && typeof playPromise.catch === "function") {
+    playPromise.catch(() => {});
+  }
+}
+
+function getExoplanetSpecText() {
+  if (!exoplanetSpecPromise) {
+    exoplanetSpecPromise = fetch(EXOPLANET_SPEC_PATH).then((res) => {
+      if (!res.ok) {
+        throw new Error(`Could not load ${EXOPLANET_SPEC_PATH}`);
+      }
+      return res.text();
+    });
+  }
+  return exoplanetSpecPromise;
+}
+
+function resetExoplanetClickState(mediaEl) {
+  if (!mediaEl) return;
+  if (mediaEl._exoplanetResetTimer) {
+    clearTimeout(mediaEl._exoplanetResetTimer);
+    mediaEl._exoplanetResetTimer = null;
+  }
+  mediaEl.dataset.easterClicks = "0";
+}
+
+async function unlockExoplanetSpecView(figure, mediaEl) {
+  if (figure.dataset.easterUnlocked === "true") return;
+
+  figure.dataset.easterUnlocked = "true";
+  figure.classList.add("spec-easter-egg-active");
+  resetExoplanetClickState(mediaEl);
+
+  let specText = "";
+  try {
+    specText = await getExoplanetSpecText();
+  } catch (err) {
+    specText = `Unable to load ${EXOPLANET_SPEC_PATH}\n\n${err?.message || err}`;
+  }
+
+  const firstLine = specText.split(/\r?\n/).find((line) => line.trim()) || "Spack environment specification";
+  const figcaption = figure.querySelector("figcaption");
+  if (figcaption) {
+    figcaption.hidden = true;
+  }
+  const artifact = document.createElement("div");
+  artifact.className = "spec-easter-egg";
+  artifact.innerHTML = `
+    <div class="spec-easter-egg-inner">
+      <div class="spec-easter-egg-body">
+        <div class="spec-easter-egg-meta">
+          <p class="spec-easter-egg-copy">The actual kind of thing this project has to wrestle with is a large Isambard-3 environment spec rather than a cinematic exoplanet, like the one to the right!</p>
+          <p class="spec-easter-egg-copy spec-easter-egg-copy-muted">${escapeHtml(firstLine)}</p>
+        </div>
+        <pre class="spec-easter-egg-pre">${escapeHtml(specText)}</pre>
+      </div>
+    </div>
+  `;
+
+  if (figcaption) {
+    figure.insertBefore(artifact, figcaption);
+  } else {
+    figure.appendChild(artifact);
+  }
+}
+
+function initExoplanetSpecEasterEgg() {
+  const mediaEl = document.querySelector(
+    `#content-inner video[data-asset="${EXOPLANET_ASSET}"], #content-inner img[data-asset="${EXOPLANET_ASSET}"]`
+  );
+  if (!mediaEl) return;
+
+  const figure = mediaEl.closest(".content-figure");
+  if (!figure || mediaEl.dataset.easterBound === "true") return;
+  const figcaption = figure.querySelector("figcaption");
+
+  if (figcaption) {
+    figcaption.textContent = EXOPLANET_FUNNY_CAPTION;
+  }
+
+  mediaEl.dataset.easterBound = "true";
+  mediaEl.dataset.easterClicks = "0";
+  mediaEl.classList.add("easter-clickable");
+  mediaEl.tabIndex = 0;
+  mediaEl.setAttribute(
+    "aria-label",
+    "Exoplanet project media. Click five times to reveal a representative project artifact."
+  );
+  mediaEl.title = "Five clicks reveals a project easter egg";
+
+  const handleActivate = () => {
+    if (figure.dataset.easterUnlocked === "true") return;
+
+    const clickCount = Number(mediaEl.dataset.easterClicks || "0") + 1;
+    mediaEl.dataset.easterClicks = String(clickCount);
+
+    if (mediaEl._exoplanetResetTimer) {
+      clearTimeout(mediaEl._exoplanetResetTimer);
+    }
+
+    if (clickCount >= 5) {
+      unlockExoplanetSpecView(figure, mediaEl);
+      return;
+    }
+
+    mediaEl._exoplanetResetTimer = window.setTimeout(() => {
+      mediaEl.dataset.easterClicks = "0";
+      mediaEl._exoplanetResetTimer = null;
+    }, 2400);
+  };
+
+  mediaEl.addEventListener("click", handleActivate);
+  mediaEl.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleActivate();
     }
   });
 }

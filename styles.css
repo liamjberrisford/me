@@ -344,6 +344,17 @@ b {
   background: var(--bg-elevated);
 }
 
+.content-video.easter-clickable,
+.content-image.easter-clickable {
+  cursor: pointer;
+}
+
+.content-video.easter-clickable:focus-visible,
+.content-image.easter-clickable:focus-visible {
+  outline: 3px solid rgba(74, 85, 104, 0.35);
+  outline-offset: 4px;
+}
+
 .content-figure picture {
   display: block;
   width: 100%;
@@ -363,9 +374,99 @@ b {
 
 .content-figure figcaption {
   margin-top: 0.4rem;
+  padding-inline: var(--content-padding);
   font-size: 0.85rem;
   color: var(--text-muted);
   text-align: center;
+}
+
+.spec-easter-egg {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(117, 170, 219, 0.24);
+  box-shadow: 0 28px 72px rgba(8, 18, 35, 0.34);
+  animation: spec-easter-reveal 340ms cubic-bezier(0.2, 0.85, 0.22, 1);
+  transform-origin: top center;
+  background:
+    radial-gradient(120% 120% at 0% 0%, rgba(72, 120, 181, 0.28), transparent 48%),
+    radial-gradient(130% 130% at 100% 0%, rgba(214, 121, 67, 0.18), transparent 46%),
+    linear-gradient(180deg, #08111f 0%, #06101b 100%);
+}
+
+.spec-easter-egg-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.spec-easter-egg-body {
+  display: grid;
+  grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr);
+  gap: 0.9rem;
+  padding: 0.9rem;
+  min-height: 0;
+  flex: 1;
+  align-items: stretch;
+  min-height: clamp(21rem, 27vw, 30rem);
+}
+
+.spec-easter-egg-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.7rem;
+  min-height: 0;
+  padding: 1rem 1.05rem;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 198, 240, 0.14);
+  background: linear-gradient(180deg, rgba(10, 22, 39, 0.82) 0%, rgba(8, 17, 31, 0.94) 100%);
+}
+
+.spec-easter-egg-copy {
+  margin: 0;
+  color: #b9cce4;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.spec-easter-egg-copy-muted {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: #88b9e2;
+  overflow-wrap: anywhere;
+}
+
+.spec-easter-egg-pre {
+  margin: 0;
+  min-height: 0;
+  height: 100%;
+  overflow: auto;
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 198, 240, 0.14);
+  background:
+    linear-gradient(180deg, rgba(5, 10, 18, 0.96) 0%, rgba(3, 7, 14, 0.98) 100%);
+  color: #dbeafe;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: clamp(0.76rem, 0.18vw + 0.72rem, 0.9rem);
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  scrollbar-gutter: stable both-edges;
+  tab-size: 2;
+}
+
+@keyframes spec-easter-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Responsive */
@@ -384,9 +485,27 @@ b {
     padding: 1.1rem 1.1rem 1.4rem;
   }
 
-   .content-figure {
+  .content-figure {
     margin: 0.4rem calc(var(--content-padding-mobile) * -1) 1rem;
     width: calc(100% + var(--content-padding-mobile) * 2);
+  }
+
+  .content-figure figcaption {
+    padding-inline: var(--content-padding-mobile);
+  }
+
+  .spec-easter-egg-inner {
+    min-height: 0;
+  }
+
+  .spec-easter-egg-body {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .spec-easter-egg-pre {
+    max-height: 19rem;
+    font-size: 0.72rem;
   }
 
   .sub-nav-inner {

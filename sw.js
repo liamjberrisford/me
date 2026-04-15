@@ -1,4 +1,4 @@
-const CACHE_NAME = "lb-site-v4";
+const CACHE_NAME = "lb-site-v21";
 const CORE_ASSETS = [
   "/",
   "/index.html",
@@ -11,7 +11,8 @@ const CORE_ASSETS = [
   "/content/publications.md",
   "/content/teaching.md",
   "/content/grants.md",
-  "/content/awards.md"
+  "/content/awards.md",
+  "/_static/text/spack_env_spec.txt"
 ];
 
 self.addEventListener("install", (event) => {
