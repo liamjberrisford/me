@@ -51,6 +51,14 @@ I am leading work to enable the Met Office’s LFRic atmospheric model and its c
 
 The package, designed for simplicity and inclusivity, enables users from diverse backgrounds, including academic, governmental, and non-governmental sectors, to retrieve historical air pollution data and utilize machine learning models for forecasting future conditions. It offers dynamic visualizations and analytical tools to enhance user engagement and comprehension of air pollution trends and implications. Environmental Insights aims to lower the barriers to air pollution data access, promoting informed decision-making and encouraging public advocacy for air quality improvements. By offering an open-source, user-friendly platform, the project contributes significantly to the democratization of environmental data, making it a valuable resource for stakeholders aiming to explore and mitigate the effects of air pollution across various sectors.
 
+## Education Research
+
+### Teaching Effectiveness and Anxiety-Aware Competency Development in Heterogeneous Data Science Cohorts (TEACH-DS)
+
+[Coding for Reproducible Research course materials](https://coding-for-reproducible-research.github.io/CfRR_Courses/home_page.html)
+
+TEACH-DS is an education research project evaluating how Coding for Reproducible Research (CfRR) supports learners from diverse academic backgrounds, career stages, and levels of prior programming experience. The project responds to a growing need for data science and coding skills across universities, public-sector organisations, and industry, where learners often face uneven access to training and varying levels of confidence with technical work.
+
 ## Websites 
 
 ### Coding for Reproducible Research

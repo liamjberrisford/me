@@ -154,10 +154,10 @@ body {
   border: none;
   box-shadow: none;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 0.5rem;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow-x: visible;
 }
 
 .sub-nav-links button {
@@ -168,7 +168,7 @@ body {
   background: #ffffff;
   border: 1px solid rgba(15, 23, 42, 0.08);
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
-  flex: 1 1 0;
+  flex: 0 1 auto;
   min-width: 0;
   white-space: nowrap;
 }
@@ -516,6 +516,7 @@ b {
   .sub-nav-links {
     width: 100%;
     flex-wrap: wrap;
+    justify-content: flex-start;
   }
 
   .sub-nav-title {
