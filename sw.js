@@ -1,4 +1,4 @@
-const CACHE_NAME = "lb-site-v21";
+const CACHE_NAME = "lb-site-v23";
 const CORE_ASSETS = [
   "/",
   "/index.html",

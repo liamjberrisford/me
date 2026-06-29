@@ -20,6 +20,9 @@ This work delivered a validated set of performance improvements for the SGWD ker
 
 ![openFOAM Tutorial Test Case Visualisation](_static/images/openfoam.png)
 
+- [OpenFOAM v2606 GPU infrastructure release news](https://www.openfoam.com/news/main-news/openfoam-v2606/infrastructure)
+- [gpuFOAM source code](https://gitlab.com/openfoam/gpu/openfoam-ecse)
+
  As part of the gpuFOAM project, I support benchmarking and portability work for a C++ codebase that leverages GPUs via standard parallelism (stdpar) across a range of HPC platforms. My contribution focuses on taking the code from system to system, establishing reliable build and benchmarking workflows, and resolving platform-specific compilation, linking, and runtime issues across heterogeneous hardware and software environments, including systems such as Isambard-AI and multiple GPU architectures (e.g. NVIDIA GH200 and AMD MI300A).
 
 A major element of this work involves identifying and documenting issues that arise from differences in toolchains, linkers, runtime environments, and platform configuration. In practice, this has meant using Spack extensively to create reproducible environments and to manage compiler and dependency variations across sites, while developing a detailed understanding of how architectural differences impact both build feasibility and performance characteristics.
