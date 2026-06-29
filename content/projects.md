@@ -20,8 +20,9 @@ This work delivered a validated set of performance improvements for the SGWD ker
 
 ![openFOAM Tutorial Test Case Visualisation](_static/images/openfoam.png)
 
-- [OpenFOAM v2606 GPU infrastructure release news](https://www.openfoam.com/news/main-news/openfoam-v2606/infrastructure)
-- [gpuFOAM source code](https://gitlab.com/openfoam/gpu/openfoam-ecse)
+- [Release news: OpenFOAM v2606 GPU infrastructure](https://www.openfoam.com/news/main-news/openfoam-v2606/infrastructure)
+- [Source code: gpuFOAM development repository](https://gitlab.com/openfoam/gpu/openfoam-ecse)
+- [ACM PASC 2026 paper: Cross-platform GPU Implementation of OpenFOAM Using Only ISO C++ standard parallelism](https://dl.acm.org/doi/10.1145/3815572.3815755)
 
 As part of the gpuFOAM project, I support benchmarking, performance analysis, and portability work for a C++ OpenFOAM codebase that leverages GPUs via standard parallelism (stdpar). My contribution focuses on taking the code across HPC platforms, establishing reliable build and benchmarking workflows, and resolving platform-specific compilation, linking, runtime, and memory-management issues across heterogeneous hardware and software environments, including NVIDIA discrete GPUs such as A100 and H100, NVIDIA Grace Hopper GH200 unified CPU-GPU systems, and AMD MI300A-class APU architectures.
 
